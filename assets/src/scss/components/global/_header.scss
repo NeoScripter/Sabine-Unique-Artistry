@@ -1,0 +1,125 @@
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: rem(1px) solid $gray-200;
+    padding-block: rem(16px) rem(8px);
+}
+
+.header__logo {
+    color: $golden;
+    max-width: rem(172px);
+    @include fs24-logo();
+}
+
+.header__popup {
+    position: absolute;
+    padding: rem(24px);
+    right: calc(rem(10px) * -1);
+    top: 0;
+    background-color: $gray-400;
+    display: grid;
+    gap: rem(32px);
+}
+
+
+.header__mobile-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.header__mobile-logo {
+    color: $golden;
+    max-width: rem(172px);
+    @include fs24-logo();
+}
+
+.header__close-btn {
+    all: unset;
+}
+
+.header__nav {
+    
+}
+
+.header__ul {
+    
+}
+
+.header__socials {
+    
+}
+
+
+.header__social {
+    
+}
+
+.header__contact-group {
+    
+}
+
+.header__contact-title {
+    
+}
+
+.header__contact {
+    
+}
+
+.header__call-btn {
+    @include button(100%);
+}
+
+.header__theme-group {
+    
+}
+
+.header__theme-toggle {
+
+}
+
+.header__theme-title {
+    
+}
+
+.header__contacts {
+    display: none;
+
+    @include m2() {
+        display: flex;
+    }
+}
+
+.header__info {
+    
+}
+
+.header__link {
+    
+}
+
+.header__whatsapp {
+    
+}
+
+.header__toggle {
+    
+}
+
+.header__theme {
+    display: none;
+
+    @include m3() {
+        display: block;
+    }
+}
+
+.header__popup-open {
+    all: unset;
+    width: rem(44px);
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}

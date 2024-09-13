@@ -30,18 +30,14 @@ export function slideDown(element: HTMLElement) {
 export function fadeOut(element: HTMLElement, milliseconds: number = 400) {
     setTransition(element, milliseconds,'opacity', () => {
         element.style.opacity = '0';
-        () => {
-            element.style.display = 'none';
-        }
+        element.style.pointerEvents = 'none';
     });
 }
 
 export function fadeIn(element: HTMLElement, milliseconds: number = 400) {
     setTransition(element, milliseconds, 'opacity', () => {
         element.style.opacity = '1';
-        () => {
-            element.style.removeProperty('display');
-        }
+        element.style.pointerEvents = 'auto';
     });
 }
 

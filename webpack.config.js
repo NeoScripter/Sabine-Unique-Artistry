@@ -67,4 +67,11 @@ module.exports = {
       filename: 'css/[name].css' 
     })
   ],
+
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),  // Alias '@' maps to src/
+    },
+    extensions: ['.ts', '.js', '.tsx'], // Add your file extensions here
+  },
 };

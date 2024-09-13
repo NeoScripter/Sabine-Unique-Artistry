@@ -104,3 +104,119 @@ a {
     --svg-link: #837D6F;
   }
 }
+html, body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Regular";
+  padding-inline: 0.63rem;
+}
+
+.wrapper {
+  max-width: 101rem;
+  margin-inline: auto;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.07rem solid #CBCBCB;
+  padding-block: 1rem 0.5rem;
+}
+
+.header__logo {
+  color: #837D6F;
+  max-width: 10.75rem;
+  font-family: "Playfair Display";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.header__popup {
+  position: absolute;
+  padding: 1.5rem;
+  right: calc(0.63rem * -1);
+  top: 0;
+  background-color: #F1F1F1;
+  display: grid;
+  gap: 2rem;
+}
+
+.header__mobile-group {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.header__mobile-logo {
+  color: #837D6F;
+  max-width: 10.75rem;
+  font-family: "Playfair Display";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.header__close-btn {
+  all: unset;
+}
+
+.header__call-btn {
+  cursor: pointer;
+  border: none;
+  font-family: "Roboto";
+  width: 100%;
+  padding: 0.94rem 1.13rem;
+  color: #F8F8F8;
+  text-transform: uppercase;
+  font-size: 1.13rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #837D6F;
+  transition: background-color 0.3s ease;
+}
+.header__call-btn:is(:hover, :focus-visible) {
+  background-color: #C0B69B;
+}
+.header__call-btn:active {
+  background-color: #CBCBCB;
+}
+.header__call-btn img {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+
+.header__contacts {
+  display: none;
+}
+@media screen and (min-width: 75rem) {
+  .header__contacts {
+    display: flex;
+  }
+}
+
+.header__theme {
+  display: none;
+}
+@media screen and (min-width: 90rem) {
+  .header__theme {
+    display: block;
+  }
+}
+
+.header__popup-open {
+  all: unset;
+  width: 2.75rem;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}

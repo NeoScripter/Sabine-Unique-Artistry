@@ -10,8 +10,8 @@
     }
 }
 
-@mixin on-hover() {
-    &:is(:hover, :focus-visible, :active) {
+@mixin hover() {
+    &:is(:hover, :focus-visible) {
         @content;
     }
 }
@@ -149,6 +149,8 @@
 }
 
 @mixin button($width: max-content) {
+    cursor: pointer;
+    border: none;
     font-family: "Roboto";
     width: $width;
     padding: rem(15px) rem(18px);
@@ -160,6 +162,15 @@
     justify-content: center;
     gap: 1rem;
     background-color: $golden;
+    transition: background-color 0.3s ease;
+
+    @include hover() {
+      background-color: $golden-200;
+    }
+
+    &:active {
+      background-color: $gray-200;
+    }
 
     img {
         width: rem(14px);

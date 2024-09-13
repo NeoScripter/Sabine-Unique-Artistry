@@ -1,0 +1,15 @@
+html, body {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Regular';
+    padding-inline: rem(10px);
+}
+
+.wrapper {
+    max-width: $wrapper-width;
+    margin-inline: auto;
+}

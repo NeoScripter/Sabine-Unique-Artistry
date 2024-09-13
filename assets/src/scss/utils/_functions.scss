@@ -30,7 +30,8 @@
 
 @function rem($value_in_px, $base_font_size: 16px) {
     $raw_result: calc($value_in_px / $base_font_size);
-    @return round_to_decimal($raw_result);
+    $rounded: round_to_decimal($raw_result);
+    @return $rounded + rem;
 }
 
 @function round_to_decimal($value) {
