@@ -14,9 +14,9 @@
 /*!*********************************!*\
   !*** ./assets/src/ts/script.ts ***!
   \*********************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, exports) => {
 
-eval("\n\n\n//# sourceURL=webpack://uniqueartistry/./assets/src/ts/script.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n\n\n//# sourceURL=webpack://uniqueartistry/./assets/src/ts/script.ts?");
 
 /***/ })
 
@@ -27,7 +27,7 @@ eval("\n\n\n//# sourceURL=webpack://uniqueartistry/./assets/src/ts/script.ts?");
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./assets/src/ts/script.ts"]();
+/******/ 	__webpack_modules__["./assets/src/ts/script.ts"](0, __webpack_exports__);
 /******/ 	
 /******/ })()
 ;

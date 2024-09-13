@@ -1,0 +1,50 @@
+// Breakpoints
+$breakpoint768: rem(768px);
+$breakpoint1200: rem(1200px);
+$breakpoint1440: rem(1440px);
+
+
+// Sizes
+$wrapper-width: rem(1616px);
+
+
+// Colors
+$golden: #837D6F;
+$black-300: #212125;
+$white-300: #F8F8F8;
+$gray-200: #CBCBCB;
+
+
+:root {
+    --body-bg: #F8F8F8;
+    --text-400: #212125;
+    --svg-link: #837D6F;
+}
+
+:root:has(#dark:checked) {
+    --body-bg: #141414;
+    --text-400: #F8F8F8;
+    --svg-link: #F1F1F1;
+}
+
+:root:has(#light:checked) {
+    --body-bg: #F8F8F8;
+    --text-400: #212125;
+    --svg-link: #837D6F;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-bg: #141414;
+        --text-400: #F8F8F8;
+        --svg-link: #F1F1F1;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --body-bg: #F8F8F8;
+        --text-400: #212125;
+        --svg-link: #837D6F;
+    }
+}
