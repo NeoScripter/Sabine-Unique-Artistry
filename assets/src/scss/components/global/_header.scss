@@ -21,8 +21,17 @@
     background-color: $gray-400;
     display: grid;
     gap: rem(32px);
+    transition: transform 0.6s ease-in-out;
+    width: 100vw;
+
+    @include min-width(rem(390px)) {
+        width: rem(390px);
+    }
 }
 
+.header__popup--hidden {
+    transform: translateX(100%);
+}
 
 .header__mobile-group {
     display: flex;
@@ -40,33 +49,91 @@
     all: unset;
 }
 
-.header__nav {
-    
-}
-
 .header__ul {
-    
+    display: flex;
+    flex-direction: column;
+    gap: rem(32px);
+    @include fs24-menu();
+
+    li {
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        transition: color 0.3s ease;
+
+        @include hover() {
+            color: $golden-200;
+        }
+    }
+
+    li.current_page_item {
+        color: $golden;
+    }
 }
 
 .header__socials {
-    
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: rem(16px);
 }
 
-
 .header__social {
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $golden-200;
+    width: rem(72px);
+    height: rem(72px);
+    transition: background-color 0.3s ease;
+
+    @include hover() {
+        background-color: $golden;
+    }
+
+    &:active {
+        background-color: $gray-200;
+    }
+
+    img {
+        width: rem(25.6px);
+        height: rem(25.6px);
+    }
 }
 
 .header__contact-group {
-    
+    display: grid;
+    gap: rem(8px);
 }
 
 .header__contact-title {
-    
+    font-family: "Roboto";
+    font-size: rem(24px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: rem(0.48px);
+    color: $golden;
 }
 
 .header__contact {
-    
+    display: block;
+    color: $black-300;
+    font-family: "Roboto";
+    font-size: rem(18px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: rem(0.36px);
+    transition: color 0.3s ease;
+
+    @include hover() {
+        color: $golden-200;
+    }
+
+    &:active {
+        color: $gray-200;
+    }
 }
 
 .header__call-btn {
@@ -74,39 +141,56 @@
 }
 
 .header__theme-group {
-    
+    display: flex;
+    gap: rem(40px);
 }
 
 .header__theme-toggle {
-
 }
 
 .header__theme-title {
-    
+    font-family: "Roboto";
+    font-size: rem(16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; 
+    letter-spacing: rem(0.32px);
+    text-transform: uppercase;
 }
 
 .header__contacts {
     display: none;
 
-    @include m2() {
+    @include m1() {
         display: flex;
     }
 }
 
 .header__info {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: rem(16px);
 }
 
 .header__link {
-    
+    display: block;
+    transition: color 0.3s ease;
+
+    @include hover() {
+        color: $golden-200;
+    }
+
+    &:active {
+        color: $gray-200;
+    }
+    @include fs18();
 }
 
 .header__whatsapp {
-    
 }
 
 .header__toggle {
-    
 }
 
 .header__theme {

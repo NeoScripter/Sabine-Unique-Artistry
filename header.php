@@ -12,7 +12,7 @@
     <div class="wrapper">
         <header class="header">
             <div class="header__logo">Sabine's Unique Artistry</div>
-            <div class="header__popup">
+            <div class="header__popup header__popup--hidden">
                 <div class="header__mobile-group">
                     <div class="header__mobile-logo">Sabine's Unique Artistry</div>
                     <button class="header__close-btn" id="header-popup-close">
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="header__contact-group">
-                    <h3 class="header__contact-title">Contact</h3>
+                    <h3 class="header__contact-title">Contacts</h3>
                     <a href="" class="header__contact">+1 (000) 000-00-00</a>
                     <a href="" class="header__contact">sa.65077361@gmail.com</a>
                 </div>
@@ -52,7 +52,7 @@
                 </button>
 
                 <div class="header__theme-group">
-                    <div class="header__theme-toggle"></div>
+                    <div class="header__theme-toggle">toggler</div>
                     <h4 class="header__theme-title">Switch to light mode</h4>
                 </div>
             </div>

@@ -147,6 +147,17 @@ body {
   background-color: #F1F1F1;
   display: grid;
   gap: 2rem;
+  transition: transform 0.6s ease-in-out;
+  width: 100vw;
+}
+@media screen and (min-width: 24.38rem) {
+  .header__popup {
+    width: 24.38rem;
+  }
+}
+
+.header__popup--hidden {
+  transform: translateX(100%);
 }
 
 .header__mobile-group {
@@ -167,6 +178,99 @@ body {
 
 .header__close-btn {
   all: unset;
+}
+
+.header__ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: "Regular";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.04rem;
+}
+@media screen and (min-width: 75rem) {
+  .header__ul {
+    font-family: "Roboto";
+    font-size: 1.13rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+  }
+}
+.header__ul li {
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.3s ease;
+}
+.header__ul li:is(:hover, :focus-visible) {
+  color: #C0B69B;
+}
+.header__ul li.current_page_item {
+  color: #837D6F;
+}
+
+.header__socials {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.header__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #C0B69B;
+  width: 4.5rem;
+  height: 4.5rem;
+  transition: background-color 0.3s ease;
+}
+.header__social:is(:hover, :focus-visible) {
+  background-color: #837D6F;
+}
+.header__social:active {
+  background-color: #CBCBCB;
+}
+.header__social img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.header__contact-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.header__contact-title {
+  font-family: "Roboto";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.03rem;
+  color: #837D6F;
+}
+
+.header__contact {
+  display: block;
+  color: #212125;
+  font-family: "Roboto";
+  font-size: 1.13rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0.03rem;
+  transition: color 0.3s ease;
+}
+.header__contact:is(:hover, :focus-visible) {
+  color: #C0B69B;
+}
+.header__contact:active {
+  color: #CBCBCB;
 }
 
 .header__call-btn {
@@ -196,13 +300,52 @@ body {
   height: 0.88rem;
 }
 
+.header__theme-group {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.header__theme-title {
+  font-family: "Roboto";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+}
+
 .header__contacts {
   display: none;
 }
-@media screen and (min-width: 75rem) {
+@media screen and (min-width: 48rem) {
   .header__contacts {
     display: flex;
   }
+}
+
+.header__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header__link {
+  display: block;
+  transition: color 0.3s ease;
+  font-family: "Roboto Flex";
+  font-size: 1.13rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0.03rem;
+}
+.header__link:is(:hover, :focus-visible) {
+  color: #C0B69B;
+}
+.header__link:active {
+  color: #CBCBCB;
 }
 
 .header__theme {
