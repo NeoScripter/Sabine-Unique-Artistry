@@ -32,19 +32,20 @@
                 );
                 ?>
                 <div class="header__socials">
-                    <a href="" class="header__social">
+                    <a href="<?php echo get_field('whatsapp_link', 'options') ;?>" target="_blank" class="header__social">
                         <img src="<?php echo get_template_directory_uri() . '/assets/svgs/whatsapp.svg' ;?>" alt="whatsapp">
                     </a>
-                    <a href="" class="header__social">
+                    <a href="<?php echo get_field('youtube_link', 'options') ;?>" target="_blank" class="header__social">
                         <img src="<?php echo get_template_directory_uri() . '/assets/svgs/youtube.svg' ;?>" alt="youtube">
                     </a>
                 </div>
 
                 <div class="header__contact-group">
                     <h3 class="header__contact-title">Contacts</h3>
-                    <a href="" class="header__contact">+1 (000) 000-00-00</a>
-                    <a href="" class="header__contact">sa.65077361@gmail.com</a>
+                    <a href="<?php echo get_field('phone_number', 'options')['url'] ;?>" target="_blank" class="header__contact"><?php echo get_field('phone_number', 'options')['title'] ;?></a>
+                    <a href="<?php echo get_field('email', 'options')['url'] ;?>" target="_blank" class="header__contact"><?php echo get_field('email', 'options')['title'] ;?></a>
                 </div>
+                
 
                 <button class="header__call-btn">
                     Contact us
@@ -52,15 +53,18 @@
                 </button>
 
                 <div class="header__theme-group">
-                    <div class="header__theme-toggle">toggler</div>
+                    <div class="header__theme-toggle">
+                        <input type="checkbox" id="dark-mode-mobile" class="header__theme-toggle">
+                        <label for="dark-mode-mobile">Light Mode</label>
+                    </div>
                     <h4 class="header__theme-title">Switch to light mode</h4>
                 </div>
             </div>
 
             <div class="header__contacts">
                 <div class="header__info">
-                    <a href="" class="header__link">+1 (000) 000-00-00</a>
-                    <a href="" class="header__link">sa.65077361@gmail.com</a>
+                    <a href="<?php echo get_field('phone_number', 'options')['url'] ;?>" target="_blank" class="header__link"><?php echo get_field('phone_number', 'options')['title'] ;?></a>
+                    <a href="<?php echo get_field('email', 'options')['url'] ;?>" target="_blank" class="header__link"><?php echo get_field('email', 'options')['title'] ;?></a>
                 </div>
                 <a href="" target="_blank" class="header__whatsapp">
                 <?php include get_template_directory() . '/assets/svgs/whatsapp-main.svg' ;?>

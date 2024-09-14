@@ -78,7 +78,7 @@ a {
   --svg-link: #837D6F;
   --theme-bg: #CBCBCB;
   --theme-toggle: #837D6F;
-  --theme-offset: 0.6rem;
+  --theme-offset: 0.65rem;
 }
 
 :root:has(#dark-mode:checked) {
@@ -116,7 +116,7 @@ a {
     --svg-link: #837D6F;
     --theme-bg: #CBCBCB;
     --theme-toggle: #837D6F;
-    --theme-offset: 0.6rem;
+    --theme-offset: 0.65rem;
   }
 }
 html, body {
@@ -252,6 +252,9 @@ body {
 
 .header__close-btn {
   all: unset;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .header__ul {
@@ -281,6 +284,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 0.2em;
   transition: color 0.3s ease;
+  color: #212125;
 }
 .header__ul li:is(:hover, :focus-visible) {
   color: #C0B69B;
@@ -295,6 +299,7 @@ body {
   }
   .header__ul li {
     flex-shrink: 0;
+    color: inherit;
   }
 }
 
@@ -402,6 +407,7 @@ body {
 
 .header__theme-group {
   display: flex;
+  align-items: center;
   gap: 2.5rem;
 }
 @media screen and (min-width: 75rem) {
@@ -412,12 +418,14 @@ body {
 
 .header__theme-title {
   font-family: "Roboto";
+  padding-top: 1.5em;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: 120%;
   letter-spacing: 0.02rem;
   text-transform: uppercase;
+  color: #212125;
 }
 
 .header__contacts {
@@ -466,6 +474,9 @@ body {
   height: 2.5rem;
   transition: background-color 0.3s ease-in-out;
   background-color: var(--body-bg);
+}
+.header__whatsapp svg:is(:hover, :focus-visible) path {
+  fill: #C0B69B;
 }
 .header__whatsapp svg path {
   fill: var(--text-400);
@@ -529,11 +540,14 @@ input[type=checkbox].header__theme-toggle + label::after {
 }
 
 input[type=checkbox].header__theme-toggle:checked + label::after {
-  transform: translateX(82%);
+  transform: translateX(90%);
 }
 
-input[type=checkbox].header__theme-toggle:checked + label {
-  content: "fj";
+.header__theme-toggle input[type=checkbox].header__theme-toggle + label::after {
+  top: 0.15rem;
+}
+.header__theme-toggle input[type=checkbox].header__theme-toggle + label {
+  color: #837D6F;
 }
 
 .header__theme {

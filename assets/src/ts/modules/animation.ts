@@ -7,6 +7,9 @@ export default class AnimationHandler {
     imageClassSelector: NodeListOf<HTMLElement>;
     loadedImageClass: string;
 
+    themeLabels: NodeListOf<HTMLElement>;
+    themeCheckboxes: NodeListOf<HTMLInputElement>;
+
     constructor() {
         // Header popup
         this.headerPopup = document.querySelector('.header__popup') as HTMLElement;
@@ -17,11 +20,15 @@ export default class AnimationHandler {
         // Loading images
         this.imageClassSelector = document.querySelectorAll('.image-loading') as NodeListOf<HTMLElement>
         this.loadedImageClass = "image-loaded";
-        
+
+        // Theme setup
+        this.themeLabels = document.querySelectorAll('.header label') as NodeListOf<HTMLElement>;
+        this.themeCheckboxes = document.querySelectorAll('.header input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
     }
 
     init() {
         this.toggleHeaderPopup();
+        this.setupTheme();
     }
 
     // Header popup main function
@@ -65,31 +72,61 @@ export default class AnimationHandler {
         });
     }
 
-  /*   setupThemePreference() {
+    // Theme setup
+
+    setupTheme() {
+        this.checkThemePreference();
+        this.applySavedTheme();
+        this.themeCheckboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                const selectedTheme = checkbox.checked ? 'dark' : 'light';
+                localStorage.setItem("theme", selectedTheme);
+                this.applyTheme(selectedTheme);
+            })
+        })
+    }
+
+    // Theme setup helpers 
+
+    changeLabelContent(selectedTheme: string) {
+        this.themeLabels.forEach(label => {
+            label.textContent = selectedTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
+        })
+    }
+
+    applyTheme(selectedTheme: string) {
+        if (selectedTheme === 'dark') {
+            document.body.setAttribute("data-theme", "dark");
+            this.themeCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            })
+            this.changeLabelContent("dark");
+        } else {
+            document.body.setAttribute("data-theme", "light");
+            this.themeCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            })
+            this.changeLabelContent("light");
+        }
+    }
+
+    checkThemePreference() {
         const prefersDarkScheme = window.matchMedia(
             "(prefers-color-scheme: dark)"
         ).matches;
-        document.getElementById(
-            prefersDarkScheme ? "dark" : "light"
-        ).checked = true;
 
-        const savedTheme = localStorage.getItem("theme") || "light";
-        this.applyTheme(savedTheme);
-
-        $('input[name="theme"]').on("change", (e) => {
-            var selectedTheme = $(e.target).attr("id");
-            localStorage.setItem("theme", selectedTheme);
-            this.applyTheme(selectedTheme);
-        });
+        if (prefersDarkScheme) {
+            this.themeCheckboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            })
+            this.changeLabelContent('dark');
+        }
     }
 
-    applyTheme(theme) {
-        if (theme === "dark") {
-            $("body").attr("data-theme", "dark");
-            $("#dark").prop("checked", true);
-        } else {
-            $("body").attr("data-theme", "light");
-            $("#light").prop("checked", true);
-        }
-    } */
+    applySavedTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        this.applyTheme(savedTheme);
+        this.changeLabelContent(savedTheme);
+    }
+
 }

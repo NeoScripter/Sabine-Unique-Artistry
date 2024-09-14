@@ -24,7 +24,7 @@ $golden-200: #C0B69B;
     --svg-link: #837D6F;
     --theme-bg: #CBCBCB;
     --theme-toggle: #837D6F;
-    --theme-offset: 0.6rem;
+    --theme-offset: 0.65rem;
 }
 
 :root:has(#dark-mode:checked) {
@@ -63,6 +63,6 @@ $golden-200: #C0B69B;
         --svg-link: #837D6F;
         --theme-bg: #CBCBCB;
         --theme-toggle: #837D6F;
-        --theme-offset: 0.6rem;
+        --theme-offset: 0.65rem;
     }
 }
