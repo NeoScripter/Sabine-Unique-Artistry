@@ -10,6 +10,7 @@ body {
     background-color: var(--body-bg);
     color: var(--text-400);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    scroll-behavior: smooth;
 }
 
 .wrapper {

@@ -1,0 +1,131 @@
+.footer {
+    position: relative;
+    text-align: center;
+    padding-block: rem(24px);
+
+    @include m1() {
+        padding-block: rem(40px);
+    }
+    @include fs18();
+}
+
+.footer::after {
+    content: '';
+    background-color: var(--footer-bg);
+    border-top: rem(1px) solid $gray-200;
+    position: absolute;
+    width: calc(100% + rem(10px) * 2);
+    top: 0;
+    left: calc(rem(10px) * -1);
+    z-index: -1;
+    bottom: 0;
+}
+
+.footer__ul {
+    
+    li {
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        margin-bottom: rem(32px);
+        transition: color 0.3s ease;
+
+        @include hover() {
+            color: $golden-200;
+        }
+
+        &:active {
+            color: $gray-200;
+        }
+
+        @include m1() {
+            margin-bottom: rem(40px);
+        }
+    }
+    @include m1() {
+        display: flex;
+        gap: rem(64px);
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.footer__logo {
+    color: $golden;
+    margin-bottom: rem(32px);
+    @include fs24-logo();
+
+    @include m1() {
+        margin-bottom: rem(40px);
+    }
+}
+
+.footer__flex {
+    margin-bottom: rem(32px);
+
+    @include m1() {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(120px);
+        margin-bottom: rem(40px);
+    }
+}
+
+.footer__copyright {
+    user-select: none;
+    margin-bottom: rem(32px);
+
+    @include m1() {
+        margin-bottom: 0;
+    }
+}
+
+.footer__privacy-link {
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+    transition: color 0.3s ease;
+
+    @include hover() {
+        color: $golden-200;
+    }
+
+    &:active {
+        color: $gray-200;
+    }
+    @include m1() {
+        margin-bottom: 0;
+    }
+}
+
+.footer__scroll-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    text-transform: uppercase;
+    border: rem(1px) solid currentColor;
+    padding: rem(4px) rem(32px);
+    gap: rem(16px);
+    margin-inline: auto;
+    transition: background-color 0.3s ease;
+
+    @include hover() {
+        background-color: $golden;
+    }
+
+    &:active {
+        background-color: $gray-200;
+    }
+
+    svg {
+        width: rem(14px);
+        height: rem(14px);
+
+        
+    }
+
+    path {
+        stroke: currentColor;
+    }
+}

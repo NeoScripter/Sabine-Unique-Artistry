@@ -25,6 +25,7 @@ $golden-200: #C0B69B;
     --theme-bg: #CBCBCB;
     --theme-toggle: #837D6F;
     --theme-offset: 0.65rem;
+    --footer-bg: #CBCBCB;
 }
 
 :root:has(#dark-mode:checked) {
@@ -34,17 +35,9 @@ $golden-200: #C0B69B;
     --theme-bg: #837D6F ;
     --theme-toggle:#CBCBCB;
     --theme-offset: 0.4rem;
+    --footer-bg: #212125;
 }
 
-/* :root:has(#light:checked) {
-    --body-bg: #F8F8F8;
-    --text-400: #212125;
-    --svg-link: #837D6F;
-    --theme-bg: #CBCBCB;
-    --theme-toggle: #837D6F;
-    --theme-offset: 80%;
-}
- */
 @media (prefers-color-scheme: dark) {
     :root {
         --body-bg: #141414;
@@ -53,6 +46,7 @@ $golden-200: #C0B69B;
         --theme-bg: #837D6F ;
         --theme-toggle:#CBCBCB;
         --theme-offset: 0.4rem;
+        --footer-bg: #212125;
     }
 }
 
@@ -64,5 +58,6 @@ $golden-200: #C0B69B;
         --theme-bg: #CBCBCB;
         --theme-toggle: #837D6F;
         --theme-offset: 0.65rem;
+        --footer-bg: #CBCBCB;
     }
 }

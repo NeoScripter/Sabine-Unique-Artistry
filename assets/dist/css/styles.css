@@ -79,6 +79,7 @@ a {
   --theme-bg: #CBCBCB;
   --theme-toggle: #837D6F;
   --theme-offset: 0.65rem;
+  --footer-bg: #CBCBCB;
 }
 
 :root:has(#dark-mode:checked) {
@@ -88,17 +89,9 @@ a {
   --theme-bg: #837D6F ;
   --theme-toggle:#CBCBCB;
   --theme-offset: 0.4rem;
+  --footer-bg: #212125;
 }
 
-/* :root:has(#light:checked) {
-    --body-bg: #F8F8F8;
-    --text-400: #212125;
-    --svg-link: #837D6F;
-    --theme-bg: #CBCBCB;
-    --theme-toggle: #837D6F;
-    --theme-offset: 80%;
-}
- */
 @media (prefers-color-scheme: dark) {
   :root {
     --body-bg: #141414;
@@ -107,6 +100,7 @@ a {
     --theme-bg: #837D6F ;
     --theme-toggle:#CBCBCB;
     --theme-offset: 0.4rem;
+    --footer-bg: #212125;
   }
 }
 @media (prefers-color-scheme: light) {
@@ -117,6 +111,7 @@ a {
     --theme-bg: #CBCBCB;
     --theme-toggle: #837D6F;
     --theme-offset: 0.65rem;
+    --footer-bg: #CBCBCB;
   }
 }
 html, body {
@@ -131,6 +126,7 @@ body {
   background-color: var(--body-bg);
   color: var(--text-400);
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  scroll-behavior: smooth;
 }
 
 .wrapper {
@@ -204,6 +200,7 @@ body {
   gap: 2rem;
   transition: transform 0.6s ease-in-out;
   width: 100vw;
+  z-index: 10;
 }
 @media screen and (min-width: 24.38rem) {
   .header__popup {
@@ -288,6 +285,9 @@ body {
 }
 .header__ul li:is(:hover, :focus-visible) {
   color: #C0B69B;
+}
+.header__ul li:active {
+  color: #CBCBCB;
 }
 .header__ul li.current_page_item {
   color: #837D6F;
@@ -569,4 +569,148 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
   .header__popup-open {
     display: none;
   }
+}
+
+.footer {
+  position: relative;
+  text-align: center;
+  padding-block: 1.5rem;
+}
+@media screen and (min-width: 48rem) {
+  .footer {
+    padding-block: 2.5rem;
+  }
+}
+.footer {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 1.13rem;
+  letter-spacing: 0.03rem;
+}
+
+.footer::after {
+  content: "";
+  background-color: var(--footer-bg);
+  border-top: 0.07rem solid #CBCBCB;
+  position: absolute;
+  width: calc(100% + 0.63rem * 2);
+  top: 0;
+  left: calc(0.63rem * -1);
+  z-index: -1;
+  bottom: 0;
+}
+
+.footer__ul li {
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+}
+.footer__ul li:is(:hover, :focus-visible) {
+  color: #C0B69B;
+}
+.footer__ul li:active {
+  color: #CBCBCB;
+}
+@media screen and (min-width: 48rem) {
+  .footer__ul li {
+    margin-bottom: 2.5rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .footer__ul {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.footer__logo {
+  color: #837D6F;
+  margin-bottom: 2rem;
+}
+.footer__logo {
+  font-family: "Playfair Display";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+@media screen and (min-width: 48rem) {
+  .footer__logo {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.footer__flex {
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 48rem) {
+  .footer__flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.footer__copyright {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 48rem) {
+  .footer__copyright {
+    margin-bottom: 0;
+  }
+}
+
+.footer__privacy-link {
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+  transition: color 0.3s ease;
+}
+.footer__privacy-link:is(:hover, :focus-visible) {
+  color: #C0B69B;
+}
+.footer__privacy-link:active {
+  color: #CBCBCB;
+}
+@media screen and (min-width: 48rem) {
+  .footer__privacy-link {
+    margin-bottom: 0;
+  }
+}
+
+.footer__scroll-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: -moz-max-content;
+  width: max-content;
+  text-transform: uppercase;
+  border: 0.07rem solid currentColor;
+  padding: 0.25rem 2rem;
+  gap: 1rem;
+  margin-inline: auto;
+  transition: background-color 0.3s ease;
+}
+.footer__scroll-link:is(:hover, :focus-visible) {
+  background-color: #837D6F;
+}
+.footer__scroll-link:active {
+  background-color: #CBCBCB;
+}
+.footer__scroll-link svg {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+.footer__scroll-link path {
+  stroke: currentColor;
 }
