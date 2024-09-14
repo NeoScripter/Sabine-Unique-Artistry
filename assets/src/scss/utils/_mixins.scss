@@ -35,20 +35,26 @@
 }
 
 @mixin fs14() {
-    font-family: "Roboto";
-    font-size: rem(18px);
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
+    & {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+        font-size: rem(14px);
+    }
 }
 
 @mixin fs16() {
-    font-family: "Roboto";
-    font-size: rem(16px);
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-    letter-spacing: rem(0.32px);
+    & {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+    }
+    & {
+        letter-spacing: rem(0.32px);
+        font-size: rem(16px);
+    }
 
     @include m2() {
         font-size: rem(18px);
@@ -56,21 +62,25 @@
 }
 
 @mixin fs18() {
-    font-family: "Roboto Flex";
-    font-size: rem(18px);
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-    letter-spacing: rem(0.36px);
+    & {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+        font-size: rem(18px);
+        letter-spacing: rem(0.36px);
+    }
 }
 
 @mixin fs20() {
-    font-family: "Roboto";
-    font-size: rem(20px);
-    font-style: normal;
-    font-weight: 600;
-    line-height: 120%;
-    letter-spacing: rem(0.4px);
+    & {
+        font-family: "Roboto";
+        font-size: rem(20px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 120%;
+        letter-spacing: rem(0.4px);
+    }
 
     @include m1() {
         font-size: rem(24px);
@@ -78,29 +88,35 @@
 }
 
 @mixin fs24-svg() {
-    font-family: "Bold";
-    font-size: rem(24px);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: rem(0.6px);
+    & {
+        font-family: "Bold";
+        font-size: rem(24px);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: rem(0.6px);
+    }
 }
 
 @mixin fs24-logo() {
-    font-family: "Playfair Display";
-    font-size: rem(24px);
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+    & {
+        font-family: "Playfair Display";
+        font-size: rem(24px);
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+    }
 }
 
 @mixin fs24-menu() {
-    font-family: "Regular";
-    font-size: rem(24px);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: rem(0.6px);
+    & {
+        font-family: "Regular";
+        font-size: rem(24px);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: rem(0.6px);
+    }
 
     @include m2() {
         font-family: "Roboto";
@@ -112,12 +128,14 @@
 }
 
 @mixin fs24-title() {
-    font-family: "Bold";
-    font-size: rem(24px);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: rem(0.6px);
+    & {
+        font-family: "Bold";
+        font-size: rem(24px);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: rem(0.6px);
+    }
 
     @include m1() {
         font-size: rem(32px);
@@ -131,12 +149,14 @@
 }
 
 @mixin fs32() {
-    font-family: "Bold";
-    font-size: rem(32px);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: rem(0.8px);
+    & {
+        font-family: "Bold";
+        font-size: rem(32px);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: rem(0.8px);
+    }
 
     @include m1() {
         font-size: rem(40px);
@@ -165,11 +185,11 @@
     transition: background-color 0.3s ease;
 
     @include hover() {
-      background-color: $golden-200;
+        background-color: $golden-200;
     }
 
     &:active {
-      background-color: $gray-200;
+        background-color: $gray-200;
     }
 
     img {

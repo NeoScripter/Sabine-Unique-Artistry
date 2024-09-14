@@ -62,14 +62,15 @@
                     <a href="" class="header__link">+1 (000) 000-00-00</a>
                     <a href="" class="header__link">sa.65077361@gmail.com</a>
                 </div>
-                <div class="header__whatsapp">
+                <a href="" target="_blank" class="header__whatsapp">
                 <?php include get_template_directory() . '/assets/svgs/whatsapp-main.svg' ;?>
-                </div>
+                </a>
             </div>
 
             <div class="header__toggle">
                 <div class="header__theme">
-                    toggle theme
+                    <input type="checkbox" id="dark-mode" class="header__theme-toggle">
+                    <label for="dark-mode">Light Mode</label>
                 </div>
                 <button class="header__popup-open" id="header-popup-open">
                     <img src="<?php echo get_template_directory_uri() . '/assets/svgs/burger-open.svg' ;?>" alt="Open burger menu">

@@ -31,16 +31,10 @@ add_theme_support('post-thumbnails');
 add_theme_support('widgets');
 
 // Custom image sizes
-add_image_size('extra-large', 1200, 1800, false);
-add_image_size('about-section', 720, 800, false);
-add_image_size('bio-horizonal', 450, 320, false);
-add_image_size('bio-vertical', 330, 450, false);
-add_image_size('blog-small', 400, 400, false);
-
-// Use the custom thumbnail size
-if ( has_post_thumbnail() ) {
-    the_post_thumbnail('bio-vertical');
-}
+add_image_size('desktop', 1200, 1200, false);
+add_image_size('tablet', 750, 750, false);
+add_image_size('tablet', 400, 400, false);
+add_image_size('tiny', 20, 20, false);
 
 // Creating a menu
 function register_menus()

@@ -7,9 +7,50 @@ body {
     min-height: 100vh;
     font-family: 'Regular';
     padding-inline: rem(10px);
+    background-color: var(--body-bg);
+    color: var(--text-400);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .wrapper {
     max-width: $wrapper-width;
     margin-inline: auto;
+}
+
+.image-loading.image-loaded > img {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image-loading > img {
+    opacity: 0;
+}
+
+.image-loading {
+    position: relative;
+}
+
+.image-loading::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    animation: pulse 1.5s infinite;
+}
+
+.image-loading.image-loaded::before {
+    content: none;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(255,255,255,0);
+    }
+
+    50% {
+        background-color: rgba(255,255,255,0.15);
+    }
+
+    100% {
+        background-color: rgba(255,255,255,0);
+    }
 }

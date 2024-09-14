@@ -22,25 +22,37 @@ $golden-200: #C0B69B;
     --body-bg: #F8F8F8;
     --text-400: #212125;
     --svg-link: #837D6F;
+    --theme-bg: #CBCBCB;
+    --theme-toggle: #837D6F;
+    --theme-offset: 0.6rem;
 }
 
-:root:has(#dark:checked) {
+:root:has(#dark-mode:checked) {
     --body-bg: #141414;
     --text-400: #F8F8F8;
     --svg-link: #F1F1F1;
+    --theme-bg: #837D6F ;
+    --theme-toggle:#CBCBCB;
+    --theme-offset: 0.4rem;
 }
 
-:root:has(#light:checked) {
+/* :root:has(#light:checked) {
     --body-bg: #F8F8F8;
     --text-400: #212125;
     --svg-link: #837D6F;
+    --theme-bg: #CBCBCB;
+    --theme-toggle: #837D6F;
+    --theme-offset: 80%;
 }
-
+ */
 @media (prefers-color-scheme: dark) {
     :root {
         --body-bg: #141414;
         --text-400: #F8F8F8;
         --svg-link: #F1F1F1;
+        --theme-bg: #837D6F ;
+        --theme-toggle:#CBCBCB;
+        --theme-offset: 0.4rem;
     }
 }
 
@@ -49,5 +61,8 @@ $golden-200: #C0B69B;
         --body-bg: #F8F8F8;
         --text-400: #212125;
         --svg-link: #837D6F;
+        --theme-bg: #CBCBCB;
+        --theme-toggle: #837D6F;
+        --theme-offset: 0.6rem;
     }
 }
