@@ -145,6 +145,8 @@ body {
 
 .image-loading {
   position: relative;
+  background-position: center;
+  background-size: cover;
 }
 
 .image-loading::before {
@@ -169,13 +171,45 @@ body {
     background-color: rgba(255, 255, 255, 0);
   }
 }
+section {
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 48rem) {
+  section {
+    margin-bottom: 1.5rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  section {
+    margin-bottom: 2.5rem;
+  }
+}
+@media screen and (min-width: 90rem) {
+  section {
+    margin-bottom: 3rem;
+  }
+}
+
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.07rem solid #CBCBCB;
   padding-block: 1rem 0.5rem;
+}
+
+.header::before {
+  content: "";
+  background-color: var(--body-bg);
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  width: calc(100% + 0.63rem * 2);
+  left: calc(0.63rem * -1);
+  z-index: -1;
 }
 
 .header__logo {
@@ -713,4 +747,187 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 }
 .footer__scroll-link path {
   stroke: currentColor;
+}
+
+.hero {
+  gap: 1.5rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero {
+    display: grid;
+    row-gap: 0;
+    -moz-column-gap: 3.88rem;
+         column-gap: 3.88rem;
+    grid-template-columns: 1fr 45rem;
+    grid-template-areas: "content image" "text text";
+  }
+}
+@media screen and (min-width: 90rem) {
+  .hero {
+    grid-template-rows: 1fr max-content;
+    grid-template-areas: "content image" "text image";
+  }
+}
+
+.hero__content {
+  grid-area: content;
+  padding-top: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero__content {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media screen and (min-width: 90rem) {
+  .hero__content {
+    align-self: stretch;
+  }
+}
+
+.hero__name {
+  color: #CBCBCB;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hero__name {
+  font-family: "Bold";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.04rem;
+}
+@media screen and (min-width: 48rem) {
+  .hero__name {
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .hero__name {
+    font-size: 2.5rem;
+    letter-spacing: 0.07rem;
+  }
+}
+
+.hero__headline {
+  text-transform: uppercase;
+  color: #837D6F;
+  margin-bottom: 1.5rem;
+}
+.hero__headline {
+  font-family: "Bold";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.05rem;
+}
+@media screen and (min-width: 48rem) {
+  .hero__headline {
+    font-size: 2.5rem;
+    letter-spacing: 0.08rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .hero__headline {
+    font-size: 3rem;
+  }
+}
+
+.hero__button {
+  cursor: pointer;
+  border: none;
+  font-family: "Roboto";
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.94rem 1.13rem;
+  color: #F8F8F8;
+  text-transform: uppercase;
+  font-size: 1.13rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #837D6F;
+  transition: background-color 0.3s ease;
+}
+.hero__button:is(:hover, :focus-visible) {
+  background-color: #C0B69B;
+}
+.hero__button:active {
+  background-color: #CBCBCB;
+}
+.hero__button img {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero__button {
+    margin-top: auto;
+  }
+}
+@media screen and (min-width: 90rem) {
+  .hero__button {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.hero__intro {
+  grid-area: text;
+  margin-block: 1.5rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero__intro {
+    order: 2;
+    margin-block: 2.5rem;
+  }
+}
+@media screen and (min-width: 90rem) {
+  .hero__intro {
+    order: 0;
+    margin-block: 0;
+    align-self: end;
+  }
+}
+
+.hero__greeting {
+  margin-bottom: 0.5rem;
+}
+.hero__greeting {
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.03rem;
+}
+@media screen and (min-width: 48rem) {
+  .hero__greeting {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .hero__description {
+    max-width: 100ch;
+  }
+}
+
+.hero__image {
+  grid-area: image;
+  aspect-ratio: 1/1;
+  margin-inline: calc(0.63rem * -1);
+}
+.hero__image img {
+  height: 100%;
+  width: 100%;
+}
+@media screen and (min-width: 48rem) {
+  .hero__image {
+    margin-inline: 0;
+  }
 }

@@ -29,6 +29,7 @@ export default class AnimationHandler {
     init() {
         this.toggleHeaderPopup();
         this.setupTheme();
+        this.imageLoading();
     }
 
     // Header popup main function

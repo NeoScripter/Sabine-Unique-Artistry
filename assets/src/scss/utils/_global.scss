@@ -29,6 +29,8 @@ body {
 
 .image-loading {
     position: relative;
+    background-position: center;
+    background-size: cover;
 }
 
 .image-loading::before {
@@ -53,5 +55,19 @@ body {
 
     100% {
         background-color: rgba(255,255,255,0);
+    }
+}
+
+section {
+    margin-bottom: rem(32px);
+
+    @include m1() {
+        margin-bottom: rem(24px);
+    }
+    @include m2() {
+        margin-bottom: rem(40px);
+    }
+    @include m3() {
+        margin-bottom: rem(48px);
     }
 }

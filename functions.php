@@ -33,7 +33,7 @@ add_theme_support('widgets');
 // Custom image sizes
 add_image_size('desktop', 1200, 1200, false);
 add_image_size('tablet', 750, 750, false);
-add_image_size('tablet', 400, 400, false);
+add_image_size('mobile', 400, 400, false);
 add_image_size('tiny', 20, 20, false);
 
 // Creating a menu
