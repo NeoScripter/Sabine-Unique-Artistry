@@ -85,7 +85,7 @@
     @include m1() {
         padding-inline: 0;
      /*    flex-basis: 49%; */
-        flex-basis: calc((100% / var(--_slides)) - (var(--_gap) * (var(--_slides) - 1)));
+        flex-basis: calc((100% - (var(--_gap) * (var(--_slides) - 1))) / var(--_slides));
         flex-shrink: 0;
     }
 
@@ -105,6 +105,7 @@
 .gallery__image-wrapper {
     aspect-ratio: 1/1;
     margin-bottom: rem(8px);
+    overflow: hidden;
     
 
     img {

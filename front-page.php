@@ -101,7 +101,7 @@
                             }
                         ?>
                             <div class="gallery__carousel-item<?php echo esc_attr($additional_class); ?>">
-                                <div class="gallery__image-wrapper">
+                                <div class="gallery__image-wrapper image-loading" style="background-image: url(<?php echo esc_url( get_the_post_thumbnail_url( $post->ID, 'tiny' ) ) ;?>)">
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php
                                         $thumbnail_id = get_post_thumbnail_id($post->ID);

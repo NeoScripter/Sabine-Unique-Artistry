@@ -1,67 +1,100 @@
 export default class CarouselHandler {
     private slides: HTMLElement[] = [];
     private currentSlide: number = 0;
-    private viewportSelector: string = '.gallery__carousel';
-    private prevButtonSelector: string = '.gallery__control-btn--prev';
-    private nextButtonSelector: string = '.gallery__control-btn--next';
+    private viewport: HTMLElement | null;
+    private prevButton: HTMLElement | null;
+    private nextButton: HTMLElement | null;
+    private btnWrapper: HTMLElement | null;
+    private numberOfSlides: number;
+    private gapWidth: number;
+    private offsetToEnd: number;
 
     // Touch event properties
     private touchStartX: number = 0;
     private touchEndX: number = 0;
-    private minSwipeDistance: number = 50; // Adjust as needed
+    private minSwipeDistance: number = 50; 
 
-    constructor() {
-        // Initialization is handled in property declarations
+    constructor(item: HTMLElement) {
+        this.viewport = item.querySelector('.gallery__carousel');
+        this.prevButton = item.querySelector('.gallery__control-btn--prev');
+        this.nextButton = item.querySelector('.gallery__control-btn--next');
+        this.btnWrapper = item.querySelector('.gallery__controls');
+        this.numberOfSlides = 0;
+        this.gapWidth = 0;
+        this.offsetToEnd = 0;
     }
 
     public init(): void {
+        this.extractComputedStyles();
         this.setupSlides();
+        this.manageBtnState();
+        this.adjustOffsetToEnd();
         this.attachPrevButtonEvent();
         this.attachNextButtonEvent();
         this.attachTouchEvents();
     }
 
+    private adjustOffsetToEnd() {
+        this.offsetToEnd = this.slides.length - 2;
+        if (this.numberOfSlides === 3) {
+            this.offsetToEnd = this.slides.length - 3;
+            return;
+        }
+    }
+
+    private extractComputedStyles() {
+        if (!this.viewport) {
+            console.warn("can't find the viewport");
+            return;
+        }
+        const styles = getComputedStyle(this.viewport);
+        this.numberOfSlides = Number(styles.getPropertyValue('--_slides').trim());
+        const gapWidthRem = styles.getPropertyValue('--_gap').trim();
+        this.gapWidth = Number(gapWidthRem.slice(0, -3)) * 16;
+    }
+
+    private manageBtnState() {
+        if (!this.btnWrapper) {
+            console.warn("can't find the carousel controls");
+            return;
+        }
+        const viewportWidthInSlides = this.numberOfSlides;
+        const currentNumberOfSlides: number = this.slides.length;
+        if (viewportWidthInSlides >= currentNumberOfSlides) {
+            this.btnWrapper.style.display = 'none';
+        }
+    }
+
     private setupSlides(): void {
-        const viewportElement = document.querySelector(this.viewportSelector) as HTMLElement;
-        if (!viewportElement) {
+        if (!this.viewport) {
             console.warn('Viewport element not found.');
             return;
         }
 
-        this.slides = Array.from(viewportElement.children) as HTMLElement[];
+        this.slides = Array.from(this.viewport.children) as HTMLElement[];
     }
 
     private updateSlidePosition(): void {
-        const viewportElement = document.querySelector(this.viewportSelector) as HTMLElement;
-        if (!viewportElement || this.slides.length === 0) return;
+        if (!this.viewport || this.slides.length === 0) return;
 
-        const styles = getComputedStyle(viewportElement);
-        const slideNumber: string = styles.getPropertyValue('--_slides').trim();
-
-        const viewportWidth = viewportElement.offsetWidth;
-        const offset = viewportWidth * this.currentSlide / Number(slideNumber);
-        viewportElement.style.transform = `translateX(${-offset}px)`;
+        const viewportWidth = this.viewport.offsetWidth;
+        const offset = ((viewportWidth / this.numberOfSlides) + (this.gapWidth / this.numberOfSlides)) * this.currentSlide;
+        this.viewport.style.transform = `translateX(${-offset}px)`;
     }
 
     private attachPrevButtonEvent(): void {
-        const prevButton = document.querySelector(this.prevButtonSelector) as HTMLElement;
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
+        if (this.prevButton) {
+            this.prevButton.addEventListener('click', () => {
                 this.goToPreviousSlide();
             });
-        } else {
-            console.warn('Previous button not found.');
         }
     }
 
     private attachNextButtonEvent(): void {
-        const nextButton = document.querySelector(this.nextButtonSelector) as HTMLElement;
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
+        if (this.nextButton) {
+            this.nextButton.addEventListener('click', () => {
                 this.goToNextSlide();
             });
-        } else {
-            console.warn('Next button not found.');
         }
     }
 
@@ -74,7 +107,7 @@ export default class CarouselHandler {
     }
 
     private goToNextSlide(): void {
-        if (this.currentSlide < this.slides.length - 1) {
+        if (this.currentSlide < this.offsetToEnd) {
             this.currentSlide++;
             this.updateSlidePosition();
         }
@@ -82,12 +115,17 @@ export default class CarouselHandler {
 
     // Touch event handlers
     private attachTouchEvents(): void {
-        const viewportElement = document.querySelector(this.viewportSelector) as HTMLElement;
-        if (!viewportElement) return;
+        if (!this.viewport) return;
 
-        viewportElement.addEventListener('touchstart', (e: TouchEvent) => this.handleTouchStart(e), false);
-        viewportElement.addEventListener('touchmove', (e: TouchEvent) => this.handleTouchMove(e), false);
-        viewportElement.addEventListener('touchend', () => this.handleTouchEnd(), false);
+        const viewportWidthInSlides = this.numberOfSlides;
+        const currentNumberOfSlides: number = this.slides.length;
+        if (viewportWidthInSlides >= currentNumberOfSlides) {
+            return;
+        }
+
+        this.viewport.addEventListener('touchstart', (e: TouchEvent) => this.handleTouchStart(e), false);
+        this.viewport.addEventListener('touchmove', (e: TouchEvent) => this.handleTouchMove(e), false);
+        this.viewport.addEventListener('touchend', () => this.handleTouchEnd(), false);
     }
 
     private handleTouchStart(e: TouchEvent): void {

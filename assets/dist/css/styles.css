@@ -1151,7 +1151,7 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
   .gallery__carousel-item {
     padding-inline: 0;
     /*    flex-basis: 49%; */
-    flex-basis: calc(100% / var(--_slides) - var(--_gap) * (var(--_slides) - 1));
+    flex-basis: calc((100% - var(--_gap) * (var(--_slides) - 1)) / var(--_slides));
     flex-shrink: 0;
   }
 }
@@ -1173,6 +1173,7 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 .gallery__image-wrapper {
   aspect-ratio: 1/1;
   margin-bottom: 0.5rem;
+  overflow: hidden;
 }
 .gallery__image-wrapper img {
   height: 100%;
