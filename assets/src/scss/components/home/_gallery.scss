@@ -3,7 +3,7 @@
 }
 
 .gallery__group {
-
+    overflow: hidden;
     margin-bottom: rem(32px);
 }
 
@@ -51,24 +51,29 @@
 }
 
 .gallery__carousel {
-    overflow: hidden;
+    --_slides: 1;
+    --_gap: 1.875rem;
     display: flex;
     flex-direction: column;
-    gap: rem(30px);
+    transition: transform 0.5s ease-in-out;
+    gap: var(--_gap);
     margin-bottom: rem(32px);
+    touch-action: pan-y;
 
     @include m1() {
         margin-bottom: rem(24px);
-        gap: rem(20px);
+        --_gap: 1.5rem;
         flex-direction: row;
+        --_slides: 2;
     }
 
     @include m2() {
         margin-bottom: rem(40px);
+        --_slides: 3;
     }
 
     @include m3() {
-        gap: rem(40px);
+        --_gap: 2.5rem;
         margin-bottom: rem(48px);
     }
 }
@@ -79,7 +84,8 @@
 
     @include m1() {
         padding-inline: 0;
-        flex-basis: 49%;
+     /*    flex-basis: 49%; */
+        flex-basis: calc((100% / var(--_slides)) - (var(--_gap) * (var(--_slides) - 1)));
         flex-shrink: 0;
     }
 

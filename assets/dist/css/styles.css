@@ -1053,6 +1053,7 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 }
 
 .gallery__group {
+  overflow: hidden;
   margin-bottom: 2rem;
 }
 
@@ -1110,27 +1111,32 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 }
 
 .gallery__carousel {
-  overflow: hidden;
+  --_slides: 1;
+  --_gap: 1.875rem;
   display: flex;
   flex-direction: column;
-  gap: 1.88rem;
+  transition: transform 0.5s ease-in-out;
+  gap: var(--_gap);
   margin-bottom: 2rem;
+  touch-action: pan-y;
 }
 @media screen and (min-width: 48rem) {
   .gallery__carousel {
     margin-bottom: 1.5rem;
-    gap: 1.25rem;
+    --_gap: 1.5rem;
     flex-direction: row;
+    --_slides: 2;
   }
 }
 @media screen and (min-width: 75rem) {
   .gallery__carousel {
     margin-bottom: 2.5rem;
+    --_slides: 3;
   }
 }
 @media screen and (min-width: 90rem) {
   .gallery__carousel {
-    gap: 2.5rem;
+    --_gap: 2.5rem;
     margin-bottom: 3rem;
   }
 }
@@ -1144,7 +1150,8 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 @media screen and (min-width: 48rem) {
   .gallery__carousel-item {
     padding-inline: 0;
-    flex-basis: 49%;
+    /*    flex-basis: 49%; */
+    flex-basis: calc(100% / var(--_slides) - var(--_gap) * (var(--_slides) - 1));
     flex-shrink: 0;
   }
 }
