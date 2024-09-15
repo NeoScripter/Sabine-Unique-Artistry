@@ -1,0 +1,143 @@
+.gallery {
+
+}
+
+.gallery__group {
+
+    margin-bottom: rem(32px);
+}
+
+.gallery__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: rem(16px);
+}
+
+.gallery__group-title {
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+    color: var(--text-400);
+    @include fs24-svg();
+}
+
+.gallery__controls {
+    display: none;
+
+    @include m1() {
+        display: flex;
+        align-items: center;
+        gap: rem(32px);
+    }
+}
+
+.gallery__control-btn {
+    width: rem(40px);
+    height: rem(40px);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+
+    path {
+        transition: stroke 0.3s ease;
+    }
+    @include hover() {
+        path {
+            stroke: #837D6F;
+        }
+    }
+}
+
+.gallery__carousel {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: rem(30px);
+    margin-bottom: rem(32px);
+
+    @include m1() {
+        margin-bottom: rem(24px);
+        gap: rem(20px);
+        flex-direction: row;
+    }
+
+    @include m2() {
+        margin-bottom: rem(40px);
+    }
+
+    @include m3() {
+        gap: rem(40px);
+        margin-bottom: rem(48px);
+    }
+}
+
+.gallery__carousel-item {
+    padding-inline: rem(25px);
+    user-select: none;
+
+    @include m1() {
+        padding-inline: 0;
+        flex-basis: 49%;
+        flex-shrink: 0;
+    }
+
+    @include m2() {
+        flex-basis: 32%;
+    }
+}
+
+.gallery__carousel-item--hidden {
+    display: none;
+
+    @include m1() {
+        display: block;
+    }
+} 
+
+.gallery__image-wrapper {
+    aspect-ratio: 1/1;
+    margin-bottom: rem(8px);
+    
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+}
+
+.gallery__item-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.gallery__item-name {
+
+    @include fs20();
+}
+
+.gallery__item-link {
+    display: block;
+    text-transform: uppercase;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+    @include fs16();
+
+
+    @include hover() {
+        color: $golden;
+    }
+
+    &:active {
+        color: $gray-200;
+    }
+}

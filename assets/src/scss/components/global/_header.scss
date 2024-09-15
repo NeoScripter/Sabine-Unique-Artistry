@@ -207,6 +207,10 @@
     @include m2() {
         display: none;
     }
+
+    label {
+        white-space: nowrap;
+    }
 }
 
 .header__theme-title {

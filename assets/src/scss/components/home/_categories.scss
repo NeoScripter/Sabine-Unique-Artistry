@@ -1,6 +1,4 @@
-.categories {
 
-}
 
 .categories__title {
     text-transform: uppercase;
@@ -36,8 +34,13 @@
 
     svg {
         margin-inline: auto;
-        width: 80%;
+        width: 50%;
         height: 70%;
+
+        @include m2() {
+            width: 80%;
+            height: 70%;
+        }
     }
     path {
         transition: stroke 0.3s ease-in-out;

@@ -6,14 +6,14 @@
         <h1 class="hero__headline"><?php echo get_field('hero_headline'); ?></h1>
         <button class="hero__button">
             Contact Us
-            <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg' ;?>" alt="arrow pointing to the top right">
+            <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg'; ?>" alt="arrow pointing to the top right">
         </button>
     </div>
     <div class="hero__intro">
         <h4 class="hero__greeting">Welcome to Sabine's Unique Artistry!</h4>
         <p class="hero__description"><?php echo get_field('hero_description'); ?></p>
     </div>
-    <div class="hero__image image-loading" style="background-image: url(<?php echo get_field('hero_image')['sizes']['tiny'] ;?>)">
+    <div class="hero__image image-loading" style="background-image: url(<?php echo get_field('hero_image')['sizes']['tiny']; ?>)">
         <img
             loading="lazy"
             src="<?php echo get_field('hero_image')['sizes']['tablet']; ?>"
@@ -49,24 +49,87 @@
 </section>
 
 <section class="gallery">
-    <div class="gallery__group">
-        <div class="gallery__header">
-            <h3 class="gallery__group-title">Figurines & Characters</h3>
-            <div class="gallery__controls">
-                <button class="gallery__control-btn gallery__control-btn--prev"></button>
-                <button class="gallery__control-btn gallery__control-btn--next"></button>
-            </div>
-        </div>
-        <div class="gallery__carousel">
-            <div class="gallery__carousel-item">
-                <div class="gallery__image-wrapper">
-                    <img src="" alt="">
-                </div>
-                <div class="gallery__item-name">Name</div>
-                <a href="" class="gallery__item-link">More details</a>
-            </div>
-        </div>
-    </div>
+    <?php
+    $item_types = get_terms(array(
+        'taxonomy'   => 'item_type',
+        'hide_empty' => true,
+        'orderby'  => 'id',
+        'order'    => 'ASC',
+    ));
+
+    if (! empty($item_types) && ! is_wp_error($item_types)) :
+        foreach ($item_types as $item_type) :
+            $args = array(
+                'post_type'      => 'item',
+                'posts_per_page' => -1, 
+                'tax_query'      => array(
+                    array(
+                        'taxonomy' => 'item_type',
+                        'field'    => 'term_id',
+                        'terms'    => $item_type->term_id,
+                    ),
+                ),
+            );
+
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) :
+                $post_count = 0;
+    ?>
+
+                <div class="gallery__group">
+                    <div class="gallery__header">
+                        <h3 class="gallery__group-title"><?php echo esc_html($item_type->name); ?></h3>
+                        <div class="gallery__controls">
+                            <button class="gallery__control-btn gallery__control-btn--prev">
+                                <?php include get_template_directory() . '/assets/svgs/gallery-prev.svg'; ?>
+                            </button>
+                            <button class="gallery__control-btn gallery__control-btn--next">
+                                <?php include get_template_directory() . '/assets/svgs/gallery-next.svg'; ?>
+                            </button>
+                        </div> <!-- .gallery__controls -->
+                    </div> <!-- .gallery__header -->
+
+                    <div class="gallery__carousel">
+                        <?php
+                        while ($query->have_posts()) : $query->the_post();
+                            $post_count++;
+
+                            $additional_class = '';
+                            if ($post_count > 3) {
+                                $additional_class = ' gallery__carousel-item--hidden';
+                            }
+                        ?>
+                            <div class="gallery__carousel-item<?php echo esc_attr($additional_class); ?>">
+                                <div class="gallery__image-wrapper">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <?php
+                                        $thumbnail_id = get_post_thumbnail_id($post->ID);
+                                        $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'tablet');
+                                        $thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                                        if (empty($thumbnail_alt)) {
+                                            $thumbnail_alt = get_the_title();
+                                        }
+                                        ?>
+                                        <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php echo esc_attr($thumbnail_alt); ?>" loading="lazy">
+                                    <?php endif; ?>
+                                </div> <!-- .gallery__image-wrapper -->
+                                <div class="gallery__item-text">
+                                    <div class="gallery__item-name"><?php echo esc_html(get_the_title()); ?></div>
+                                    <a href="<?php the_permalink(); ?>" class="gallery__item-link">More details</a>
+                                </div> <!-- .gallery__item-text -->
+                            </div> <!-- .gallery__carousel-item -->
+                        <?php endwhile; ?>
+                    </div> <!-- .gallery__carousel -->
+                </div> <!-- .gallery__group -->
+
+    <?php
+                wp_reset_postdata();
+            endif;
+        endforeach;
+    endif;
+    ?>
+
 </section>
 
 <?php get_footer(); ?>

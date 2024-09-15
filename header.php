@@ -66,7 +66,7 @@
                     <a href="<?php echo get_field('phone_number', 'options')['url'] ;?>" target="_blank" class="header__link"><?php echo get_field('phone_number', 'options')['title'] ;?></a>
                     <a href="<?php echo get_field('email', 'options')['url'] ;?>" target="_blank" class="header__link"><?php echo get_field('email', 'options')['title'] ;?></a>
                 </div>
-                <a href="" target="_blank" class="header__whatsapp">
+                <a href="<?php echo get_field('whatsapp_link', 'options') ;?>" target="_blank" class="header__whatsapp">
                 <?php include get_template_directory() . '/assets/svgs/whatsapp-main.svg' ;?>
                 </a>
             </div>
