@@ -96,6 +96,11 @@
         line-height: 120%;
         letter-spacing: rem(0.6px);
     }
+
+    @include m2() {
+        font-size: rem(32px);
+        letter-spacing: rem(0.8px);
+    }
 }
 
 @mixin fs24-logo() {

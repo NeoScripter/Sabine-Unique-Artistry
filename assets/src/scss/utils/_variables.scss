@@ -26,6 +26,8 @@ $golden-200: #C0B69B;
     --theme-toggle: #837D6F;
     --theme-offset: 0.65rem;
     --footer-bg: #CBCBCB;
+    --category-bg: #F1F1F1;
+    --category-svg: #837D6F;
 }
 
 :root:has(#dark-mode:checked) {
@@ -36,6 +38,8 @@ $golden-200: #C0B69B;
     --theme-toggle:#CBCBCB;
     --theme-offset: 0.4rem;
     --footer-bg: #212125;
+    --category-bg: #1D1D1D;
+    --category-svg: #F1F1F1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +51,8 @@ $golden-200: #C0B69B;
         --theme-toggle:#CBCBCB;
         --theme-offset: 0.4rem;
         --footer-bg: #212125;
+        --category-bg: #1D1D1D;
+        --category-svg: #F1F1F1;
     }
 }
 
@@ -59,5 +65,7 @@ $golden-200: #C0B69B;
         --theme-toggle: #837D6F;
         --theme-offset: 0.65rem;
         --footer-bg: #CBCBCB;
+        --category-bg: #F1F1F1;
+        --category-svg: #837D6F;
     }
 }
