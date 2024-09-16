@@ -228,7 +228,7 @@
                     <div class="faq__item">
                         <div class="faq__question">
                             <?php the_sub_field('faq_question'); ?>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-faq.svg' ;?>" alt="arrow" class="faq__arrow">
+                            <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-faq.svg'; ?>" alt="arrow" class="faq__arrow">
                         </div>
                         <div class="faq__answer">
                             <?php the_sub_field('faq_answer'); ?>
@@ -255,4 +255,29 @@
     </div>
 </section>
 
+<section class="videos">
+    <h2 class="videos__title"><?php echo get_field('videos_title'); ?></h2>
+    <p class="videos__sibtitle"><?php echo get_field('videos_subtitle'); ?></p>
+    <?php if (have_rows('videos_list')): ?>
+        <div class="videos__carousel">
+            <?php while (have_rows('videos_list')): the_row(); ?>
+
+                <a href="<?php echo get_sub_field('videos_link'); ?>" target="_black" class="videos__item">
+                    <img src="<?php echo get_sub_field('videos_image')['sizes']['tablet']; ?>" alt="<?php echo get_sub_field('videos_image')['alt']; ?>">
+                </a>
+
+            <?php endwhile; ?>
+        </div>
+    <?php endif; ?>
+    <a href="<?php echo the_sub_field('videos_youtube_link'); ?>" class="videos__link">
+        Check out our youtube channel
+        <?php include get_template_directory() . '/assets/svgs/arrow-top.svg'; ?>
+    </a>
+</section>
+
+<style>
+    .videos__item::after {
+        background-image: url(<?php echo get_template_directory_uri() . '/assets/svgs/play-video.svg'; ?>);
+    }
+</style>
 <?php get_footer(); ?>
