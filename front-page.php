@@ -87,19 +87,19 @@
                             <button class="gallery__control-btn gallery__control-btn--next">
                                 <?php include get_template_directory() . '/assets/svgs/gallery-next.svg'; ?>
                             </button>
-                        </div> <!-- .gallery__controls -->
-                    </div> <!-- .gallery__header -->
+                        </div>
+                    </div>
 
                     <div class="gallery__carousel">
                         <?php
-                        while ($query->have_posts()) : $query->the_post();
-                            $post_count++;
+                            while ($query->have_posts()) : $query->the_post();
+                                $post_count++;
 
-                            $additional_class = '';
-                            if ($post_count > 3) {
-                                $additional_class = ' gallery__carousel-item--hidden';
-                            }
-                        ?>
+                                $additional_class = '';
+                                if ($post_count > 3) {
+                                    $additional_class = ' gallery__carousel-item--hidden';
+                                }
+                            ?>
                             <div class="gallery__carousel-item<?php echo esc_attr($additional_class); ?>">
                                 <div class="gallery__image-wrapper image-loading" style="background-image: url(<?php echo esc_url( get_the_post_thumbnail_url( $post->ID, 'tiny' ) ) ;?>)">
                                     <?php if (has_post_thumbnail()) : ?>
@@ -113,23 +113,63 @@
                                         ?>
                                         <img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php echo esc_attr($thumbnail_alt); ?>" loading="lazy">
                                     <?php endif; ?>
-                                </div> <!-- .gallery__image-wrapper -->
+                                </div>
                                 <div class="gallery__item-text">
                                     <div class="gallery__item-name"><?php echo esc_html(get_the_title()); ?></div>
                                     <a href="<?php the_permalink(); ?>" class="gallery__item-link">More details</a>
-                                </div> <!-- .gallery__item-text -->
-                            </div> <!-- .gallery__carousel-item -->
+                                </div>
+                            </div>
                         <?php endwhile; ?>
-                    </div> <!-- .gallery__carousel -->
-                </div> <!-- .gallery__group -->
-
-    <?php
-                wp_reset_postdata();
-            endif;
-        endforeach;
-    endif;
-    ?>
-
+                    </div>
+                </div>
+    <?php wp_reset_postdata(); endif; endforeach; endif; ?>
+    <a href="" class="gallery__link">
+        see the catalog
+        <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg' ;?>" alt="arrow pointing to the top right">
+    </a>
 </section>
+
+<section class="about">
+    <div class="about__content">
+        <h2 class="about__title">About us</h2>
+        <p class="about__description">We are a team of creative professionals specializing in crafting impressive works of art from a diverse range of materials, from plaster and clay to premium bronze. Our passion for creating unique forms is evident in every detail, making our sculptures and miniatures distinctive and appealing.</p>
+        <h3 class="about__services-heading">Services</h3>
+        <div class="about__services-list">
+            <div class="about__service">
+                <div class="about__service-header">
+                    <div class="about__service-number">01</div>  
+                    <h4 class="about__service-name">Individual orders</h4>         
+                </div>
+                <div class="about__service-description">
+                    Clients can order unique sculptures and miniatures according to their own designs and preferences.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about__image">
+        <img
+            loading="lazy"
+            src="<?php echo get_field('about_us_image')['sizes']['tablet']; ?>"
+            alt="<?php echo get_field('about_us_image')['alt']; ?>"
+            sizes="(min-width: 90rem) 45rem, 
+           (min-width: 75rem) 30rem, 
+           (min-width: 48rem) 45rem, 
+           45rem"
+            srcset="
+            <?php echo get_field('hero_image')['sizes']['mobile']; ?> 400w, 
+            <?php echo get_field('hero_image')['sizes']['tablet']; ?> 720w,
+            <?php echo get_field('hero_image')['sizes']['desktop']; ?> 1200w
+        ">
+    </div>
+    <div class="about__summary">
+        <div class="about__summary-image">
+            <img src="" alt="">
+        </div>
+        <p class="about__summary-text">
+            We gladly offer both ready-made items and custom orders, bringing to life our clients' boldest ideas. Whether it's an interior decoration, a gift with special significance, or a business ambiance enhancer, we are ready to turn your dreams into reality.
+        </p>
+    </div>
+</section>
+
 
 <?php get_footer(); ?>
