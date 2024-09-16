@@ -922,6 +922,21 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
   }
 }
 
+.hero__description {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+.hero__description {
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero__description {
+    font-size: 1.13rem;
+  }
+}
 @media screen and (min-width: 75rem) {
   .hero__description {
     max-width: 100ch;
@@ -1273,5 +1288,185 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 @media screen and (min-width: 90rem) {
   .gallery__link {
     margin-bottom: 3rem;
+  }
+}
+
+.about > * {
+  margin-bottom: 1rem;
+}
+
+.about__title {
+  text-transform: uppercase;
+  color: #837D6F;
+  margin-bottom: 1rem;
+}
+.about__title {
+  font-family: "Bold";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.05rem;
+}
+@media screen and (min-width: 48rem) {
+  .about__title {
+    font-size: 2.5rem;
+    letter-spacing: 0.08rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .about__title {
+    font-size: 3rem;
+  }
+}
+
+.about__description {
+  margin-bottom: 1rem;
+}
+.about__description {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+.about__description {
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .about__description {
+    font-size: 1.13rem;
+  }
+}
+
+.about__services-heading {
+  text-transform: uppercase;
+  color: #837D6F;
+}
+.about__services-heading {
+  font-family: "Bold";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.04rem;
+}
+@media screen and (min-width: 75rem) {
+  .about__services-heading {
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
+  }
+}
+
+.about__service {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1rem;
+  border-bottom: 0.07rem solid #CBCBCB;
+}
+.about__service > * {
+  flex: 1;
+}
+
+.about__service-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about__service-number {
+  color: #CBCBCB;
+}
+.about__service-number {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 1.13rem;
+  letter-spacing: 0.03rem;
+}
+
+.about__service-name {
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.03rem;
+}
+@media screen and (min-width: 48rem) {
+  .about__service-name {
+    font-size: 1.5rem;
+  }
+}
+
+.about__service-description {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 0.88rem;
+}
+
+.about__image {
+  overflow: hidden;
+}
+.about__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media screen and (min-width: 48rem) {
+  .about__image img {
+    -o-object-position: 50% 35%;
+       object-position: 50% 35%;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .about__image {
+    aspect-ratio: 1.7/1;
+  }
+}
+
+.about__summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about__summary-image {
+  flex-basis: 31%;
+  flex-shrink: 0;
+}
+.about__summary-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.about__summary-text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+.about__summary-text {
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .about__summary-text {
+    font-size: 1.13rem;
   }
 }

@@ -79,6 +79,7 @@
 }
 
 .hero__description {
+    @include fs16();
     @include m2() {
         max-width: 100ch;
     }

@@ -61,7 +61,8 @@
         foreach ($item_types as $item_type) :
             $args = array(
                 'post_type'      => 'item',
-                'posts_per_page' => -1, 
+                'posts_per_page' => -1,
+                'order'    => 'ASC',
                 'tax_query'      => array(
                     array(
                         'taxonomy' => 'item_type',
@@ -92,16 +93,16 @@
 
                     <div class="gallery__carousel">
                         <?php
-                            while ($query->have_posts()) : $query->the_post();
-                                $post_count++;
+                        while ($query->have_posts()) : $query->the_post();
+                            $post_count++;
 
-                                $additional_class = '';
-                                if ($post_count > 3) {
-                                    $additional_class = ' gallery__carousel-item--hidden';
-                                }
-                            ?>
+                            $additional_class = '';
+                            if ($post_count > 3) {
+                                $additional_class = ' gallery__carousel-item--hidden';
+                            }
+                        ?>
                             <div class="gallery__carousel-item<?php echo esc_attr($additional_class); ?>">
-                                <div class="gallery__image-wrapper image-loading" style="background-image: url(<?php echo esc_url( get_the_post_thumbnail_url( $post->ID, 'tiny' ) ) ;?>)">
+                                <div class="gallery__image-wrapper image-loading" style="background-image: url(<?php echo esc_url(get_the_post_thumbnail_url($post->ID, 'tiny')); ?>)">
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php
                                         $thumbnail_id = get_post_thumbnail_id($post->ID);
@@ -122,29 +123,39 @@
                         <?php endwhile; ?>
                     </div>
                 </div>
-    <?php wp_reset_postdata(); endif; endforeach; endif; ?>
+    <?php wp_reset_postdata();
+            endif;
+        endforeach;
+    endif; ?>
     <a href="" class="gallery__link">
         see the catalog
-        <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg' ;?>" alt="arrow pointing to the top right">
+        <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg'; ?>" alt="arrow pointing to the top right">
     </a>
 </section>
 
 <section class="about">
     <div class="about__content">
         <h2 class="about__title">About us</h2>
-        <p class="about__description">We are a team of creative professionals specializing in crafting impressive works of art from a diverse range of materials, from plaster and clay to premium bronze. Our passion for creating unique forms is evident in every detail, making our sculptures and miniatures distinctive and appealing.</p>
+        <p class="about__description"><?php echo get_field('about_us_intro'); ?></p>
         <h3 class="about__services-heading">Services</h3>
-        <div class="about__services-list">
-            <div class="about__service">
-                <div class="about__service-header">
-                    <div class="about__service-number">01</div>  
-                    <h4 class="about__service-name">Individual orders</h4>         
-                </div>
-                <div class="about__service-description">
-                    Clients can order unique sculptures and miniatures according to their own designs and preferences.
-                </div>
+        <?php $i = 1; ?>
+        <?php if (have_rows('about_us_services')): ?>
+            <div class="about__services-list">
+                <?php while (have_rows('about_us_services')): the_row(); ?>
+                    <div class="about__service">
+                        <div class="about__service-header">
+                            <div class="about__service-number"><?php echo '0' . $i; ?></div>
+                            <h4 class="about__service-name"><?php the_sub_field('about_us_service_title'); ?></h4>
+                        </div>
+                        <div class="about__service-description">
+                            <?php the_sub_field('about_us_service_description'); ?>
+                        </div>
+                    </div>
+                    <?php $i++; ?>
+                <?php endwhile; ?>
             </div>
-        </div>
+        <?php endif; ?>
+
     </div>
     <div class="about__image">
         <img
@@ -153,20 +164,23 @@
             alt="<?php echo get_field('about_us_image')['alt']; ?>"
             sizes="(min-width: 90rem) 45rem, 
            (min-width: 75rem) 30rem, 
-           (min-width: 48rem) 45rem, 
+           (min-width: 48rem) 75rem, 
            45rem"
             srcset="
-            <?php echo get_field('hero_image')['sizes']['mobile']; ?> 400w, 
-            <?php echo get_field('hero_image')['sizes']['tablet']; ?> 720w,
-            <?php echo get_field('hero_image')['sizes']['desktop']; ?> 1200w
+            <?php echo get_field('about_us_image')['sizes']['mobile']; ?> 400w, 
+            <?php echo get_field('about_us_image')['sizes']['tablet']; ?> 720w,
+            <?php echo get_field('about_us_image')['sizes']['desktop']; ?> 1200w
         ">
     </div>
     <div class="about__summary">
         <div class="about__summary-image">
-            <img src="" alt="">
+            <img
+                loading="lazy"
+                src="<?php echo get_field('about_us_bottom_image')['sizes']['mobile']; ?>"
+                alt="<?php echo get_field('about_us_bottom_image')['alt']; ?>">
         </div>
         <p class="about__summary-text">
-            We gladly offer both ready-made items and custom orders, bringing to life our clients' boldest ideas. Whether it's an interior decoration, a gift with special significance, or a business ambiance enhancer, we are ready to turn your dreams into reality.
+            <?php echo get_field('about_us_bottom_text'); ?>
         </p>
     </div>
 </section>
