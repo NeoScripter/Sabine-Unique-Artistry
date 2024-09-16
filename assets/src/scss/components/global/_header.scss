@@ -262,7 +262,6 @@
     svg {
         width: rem(40px);
         height: rem(40px);
-        transition: background-color 0.3s ease-in-out;
         background-color: var(--body-bg);
 
         @include hover() {

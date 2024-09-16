@@ -1,0 +1,52 @@
+.section-pair {
+    --_gap: 0.5rem;
+    padding-top: rem(32px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--_gap);
+
+    @include m1() {
+        flex-direction: row;
+        flex-wrap: wrap;
+        --_gap: 1rem;
+    }
+    @include m2() {
+        --_gap: 1.25rem;
+        row-gap: 1rem;
+    }
+    @include m3() {
+        --_gap: 2.25rem;
+    }
+}
+
+.section-pair__photo {
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    @include m1() {
+        flex-shrink: 0;
+        aspect-ratio: 1.3/1;
+        flex-basis: calc(100% / 2 - var(--_gap) / 2);
+    }
+    @include m2() {
+        aspect-ratio: 1.1/1;
+    }
+    @include m3() {
+        aspect-ratio: 1.6/1;
+    }
+}
+
+.section-pair__info {
+    @include fs16();
+
+    @include m1() {
+        order: 2;
+        flex-basis: 100%;
+        max-width: 85ch;
+    }
+}

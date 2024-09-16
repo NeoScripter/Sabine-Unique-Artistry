@@ -10,37 +10,45 @@ export default class AnimationHandler {
     themeLabels: NodeListOf<HTMLElement>;
     themeCheckboxes: NodeListOf<HTMLInputElement>;
 
+    faqItem: NodeListOf<HTMLElement>;
+    faqItemOpenClass: string;
+
     constructor() {
         // Header popup
-        this.headerPopup = document.querySelector('.header__popup') as HTMLElement;
-        this.closePopupBtn = document.querySelector('#header-popup-close') as HTMLElement;
-        this.openPopupBtn = document.querySelector('#header-popup-open') as HTMLElement;
-        this.popupHiddenClass = 'header__popup--hidden';
+        this.headerPopup = document.querySelector(".header__popup") as HTMLElement;
+        this.closePopupBtn = document.querySelector("#header-popup-close") as HTMLElement;
+        this.openPopupBtn = document.querySelector("#header-popup-open") as HTMLElement;
+        this.popupHiddenClass = "header__popup--hidden";
 
         // Loading images
-        this.imageClassSelector = document.querySelectorAll('.image-loading') as NodeListOf<HTMLElement>
+        this.imageClassSelector = document.querySelectorAll(".image-loading") as NodeListOf<HTMLElement>;
         this.loadedImageClass = "image-loaded";
 
         // Theme setup
-        this.themeLabels = document.querySelectorAll('.header label') as NodeListOf<HTMLElement>;
+        this.themeLabels = document.querySelectorAll(".header label") as NodeListOf<HTMLElement>;
         this.themeCheckboxes = document.querySelectorAll('.header input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+
+        // FAQ accordion
+        this.faqItem = document.querySelectorAll(".faq__item");
+        this.faqItemOpenClass = "faq__item--open";
     }
 
     init() {
         this.toggleHeaderPopup();
         this.setupTheme();
         this.imageLoading();
+        this.setupFAQ();
     }
 
     // Header popup main function
     toggleHeaderPopup() {
-        this.openPopupBtn.addEventListener('click', () => {
+        this.openPopupBtn.addEventListener("click", () => {
             this.showPopup();
-        })
+        });
 
-        this.closePopupBtn.addEventListener('click', () => {
+        this.closePopupBtn.addEventListener("click", () => {
             this.hidePopup();
-        })
+        });
     }
 
     // Header popup helpers
@@ -58,7 +66,7 @@ export default class AnimationHandler {
     imageLoading() {
         const self = this;
 
-        (self.imageClassSelector).forEach((imageWrapper) => {
+        self.imageClassSelector.forEach((imageWrapper) => {
             const image = imageWrapper.querySelector("img");
 
             function loaded() {
@@ -79,48 +87,46 @@ export default class AnimationHandler {
         this.checkThemePreference();
         this.applySavedTheme();
         this.themeCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', () => {
-                const selectedTheme = checkbox.checked ? 'dark' : 'light';
+            checkbox.addEventListener("change", () => {
+                const selectedTheme = checkbox.checked ? "dark" : "light";
                 localStorage.setItem("theme", selectedTheme);
                 this.applyTheme(selectedTheme);
-            })
-        })
+            });
+        });
     }
 
-    // Theme setup helpers 
+    // Theme setup helpers
 
     changeLabelContent(selectedTheme: string) {
-        this.themeLabels.forEach(label => {
-            label.textContent = selectedTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
-        })
+        this.themeLabels.forEach((label) => {
+            label.textContent = selectedTheme === "dark" ? "Dark Mode" : "Light Mode";
+        });
     }
 
     applyTheme(selectedTheme: string) {
-        if (selectedTheme === 'dark') {
+        if (selectedTheme === "dark") {
             document.body.setAttribute("data-theme", "dark");
-            this.themeCheckboxes.forEach(checkbox => {
+            this.themeCheckboxes.forEach((checkbox) => {
                 checkbox.checked = true;
-            })
+            });
             this.changeLabelContent("dark");
         } else {
             document.body.setAttribute("data-theme", "light");
-            this.themeCheckboxes.forEach(checkbox => {
+            this.themeCheckboxes.forEach((checkbox) => {
                 checkbox.checked = false;
-            })
+            });
             this.changeLabelContent("light");
         }
     }
 
     checkThemePreference() {
-        const prefersDarkScheme = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
         if (prefersDarkScheme) {
-            this.themeCheckboxes.forEach(checkbox => {
+            this.themeCheckboxes.forEach((checkbox) => {
                 checkbox.checked = true;
-            })
-            this.changeLabelContent('dark');
+            });
+            this.changeLabelContent("dark");
         }
     }
 
@@ -130,4 +136,33 @@ export default class AnimationHandler {
         this.changeLabelContent(savedTheme);
     }
 
+    // FAQ accordion
+
+    setupFAQ() {
+        if (!this.faqItem) {
+            console.warn("No accordion item found!");
+            return;
+        }
+        const self = this;
+        this.faqItem.forEach((item) => {
+            item.addEventListener("click", function () {
+                self.resetAccordion(item);
+                this.classList.toggle(self.faqItemOpenClass);
+            });
+        });
+    }
+
+    // FAQ accordion helpers
+
+    resetAccordion(currentItem: HTMLElement) {
+        if (!this.faqItem) {
+            console.warn("No accordion item found!");
+            return;
+        }
+        this.faqItem.forEach((item) => {
+            if (item !== currentItem) {
+                item.classList.remove(this.faqItemOpenClass);
+            }
+        });
+    }
 }

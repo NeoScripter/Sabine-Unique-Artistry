@@ -2,9 +2,31 @@
     & > * {
         margin-bottom: rem(16px);
     }
+
+    @include m2() {
+        display: grid;
+        grid-template-columns: 59% 1fr;
+        grid-template-rows: 80% 1fr;
+        gap: rem(20px);
+        grid-template-areas: 
+        'content image'
+        'summary image';
+    }
+
+    @include m3() {
+        column-gap: rem(60px);
+        row-gap: 0;
+
+        & > * {
+            margin-bottom: 0;
+        }
+    }
 } 
 .about__content{
-
+    grid-area: content;
+    @include m2() {
+        margin-bottom: rem(24px);
+    }
 } 
 .about__title{
     text-transform: uppercase;
@@ -15,16 +37,18 @@
 .about__description{
     margin-bottom: rem(16px);
     @include fs16();
+    @include m2() {
+        margin-block: rem(24px);
+    }
 } 
 .about__services-heading{
     text-transform: uppercase;
     color: $golden;
     @include fs24-svg();
 } 
-.about__services-list{
 
-} 
 .about__service{
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,6 +58,12 @@
 
     & > * {
         flex: 1;
+    }
+
+    @include hover() {
+        .about__service-name {
+            color: $golden;
+        }
     }
 } 
 .about__service-header{
@@ -48,12 +78,14 @@
     @include fs18();
 }
 .about__service-name{
+    transition: color 0.3s ease;
     @include fs20();
 } 
 .about__service-description{
     @include fs14();
 }
 .about__image{
+    grid-area: image;
     overflow: hidden;
 
     img {
@@ -70,8 +102,12 @@
     @include m1() {
         aspect-ratio: 1.7/1;
     }
+    @include m2() {
+        aspect-ratio: auto;
+    }
 } 
 .about__summary{
+    grid-area: summary;
     display: flex;
     align-items: flex-start;
     gap: rem(16px);

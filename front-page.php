@@ -185,5 +185,74 @@
     </div>
 </section>
 
+<section class="section-pair">
+    <div class="section-pair__photo">
+        <img
+            loading="lazy"
+            src="<?php echo get_field('section_pair_photo_1')['sizes']['tablet']; ?>"
+            alt="<?php echo get_field('section_pair_photo_1')['alt']; ?>"
+            sizes="(min-width: 90rem) 50rem, 
+           (min-width: 75rem) 50vw, 
+           (min-width: 48rem) 50vw, 
+           100vw"
+            srcset="
+            <?php echo get_field('section_pair_photo_1')['sizes']['mobile']; ?> 400w, 
+            <?php echo get_field('section_pair_photo_1')['sizes']['tablet']; ?> 720w,
+            <?php echo get_field('section_pair_photo_1')['sizes']['desktop']; ?> 1200w
+            ">
+    </div>
+    <p class="section-pair__info"><?php echo get_field('section_pair_info'); ?></p>
+    <div class="section-pair__photo">
+        <img
+            loading="lazy"
+            src="<?php echo get_field('section_pair_photo_2')['sizes']['tablet']; ?>"
+            alt="<?php echo get_field('section_pair_photo_2')['alt']; ?>"
+            sizes="(min-width: 90rem) 50rem, 
+           (min-width: 75rem) 50vw, 
+           (min-width: 48rem) 50vw, 
+           100vw"
+            srcset="
+            <?php echo get_field('section_pair_photo_2')['sizes']['mobile']; ?> 400w, 
+            <?php echo get_field('section_pair_photo_2')['sizes']['tablet']; ?> 720w,
+            <?php echo get_field('section_pair_photo_2')['sizes']['desktop']; ?> 1200w
+            ">
+    </div>
+</section>
+
+<section class="faq">
+    <div class="faq__content">
+        <h2 class="faq__title">FAQ</h2>
+        <?php if (have_rows('faq_list')): ?>
+            <div class="faq__list">
+                <?php while (have_rows('faq_list')): the_row(); ?>
+                    <div class="faq__item">
+                        <div class="faq__question">
+                            <?php the_sub_field('faq_question'); ?>
+                            <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-faq.svg' ;?>" alt="arrow" class="faq__arrow">
+                        </div>
+                        <div class="faq__answer">
+                            <?php the_sub_field('faq_answer'); ?>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="faq__image">
+        <img
+            loading="lazy"
+            src="<?php echo get_field('faq_image')['sizes']['tablet']; ?>"
+            alt="<?php echo get_field('faq_image')['alt']; ?>"
+            sizes="(min-width: 90rem) 29rem, 
+           (min-width: 75rem) 50vw, 
+           (min-width: 48rem) 100vw, 
+           100vw"
+            srcset="
+            <?php echo get_field('faq_image')['sizes']['mobile']; ?> 400w, 
+            <?php echo get_field('faq_image')['sizes']['tablet']; ?> 720w,
+            <?php echo get_field('faq_image')['sizes']['desktop']; ?> 1200w
+            ">
+    </div>
+</section>
 
 <?php get_footer(); ?>
