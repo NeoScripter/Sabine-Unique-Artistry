@@ -1,6 +1,6 @@
 .videos {
     padding-block: rem(20px);
-
+    position: relative;
 }
 
 .videos__title {
@@ -10,8 +10,11 @@
 }
 
 .videos__sibtitle {
-    max-width: 85ch;
     @include fs16();
+
+    @include m3() {
+        max-width: 85ch;
+    }
 }
 
 .videos__carousel {
@@ -23,6 +26,7 @@
 
     @include m2() {
         gap: 1.25rem;
+        margin-block: rem(24px) 0;
     }
 
     @include m3() {
@@ -31,6 +35,7 @@
 }
 
 .videos__item {
+    overflow: hidden;
     display: block;
     position: relative;
     aspect-ratio: 1.4/1;
@@ -74,4 +79,10 @@
 .videos__link {
     margin-inline: auto;
     @include secondary-button();
+
+    @include m2() {
+        position: absolute;
+        right: 0;
+        top: 2.5rem;
+    }
 }

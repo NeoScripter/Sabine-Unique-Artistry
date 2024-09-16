@@ -1,0 +1,122 @@
+.contact {
+    display: grid;
+    gap: rem(24px);
+
+    @include m1() {
+        grid-template-areas: 
+        'header header'
+        'image info';
+
+        column-gap: rem(40px);
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include m2() {
+        grid-template-areas: 
+        'image header'
+        'image info';
+
+        column-gap: rem(20px);
+        grid-template-columns: 40% 1fr;
+        place-content: stretch;
+    }
+
+    @include m3() {
+        gap: rem(48px);
+    }
+}
+
+.contact__header {
+    @include m1() {
+        grid-area: header;
+    }
+}
+.contact__title {
+    text-transform: uppercase;
+    color: $golden;
+    margin-bottom: rem(24px);
+    @include fs32();
+}
+.contact__description {
+    @include fs16();
+}
+.contact__image {
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    @include m1() {
+        grid-area: image;    
+    }
+}
+.contact__info {
+    display: grid;
+    place-content: start;
+    gap: rem(24px);
+
+    @include m1() {
+        grid-area: info;    
+    }
+    @include m2() {
+        align-content: end;
+    }
+}
+
+.contact__subgroup {
+    display: grid;
+    gap: rem(16px);
+    align-items: start;
+}
+.contact__subheading {
+    color: $gray-600;
+    font-family: "Roboto";
+    font-size: rem(24px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; 
+}
+.contact__link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color 0.3s ease;
+    display: block;
+    width: max-content;
+
+    @include hover() {
+        color: $golden-200;
+    }
+
+    &:active {
+        color: $gray-200;
+    }
+}
+.contact__text {
+    @include fs18();
+}
+.contact__social-links {
+    display: flex;
+    align-items: center;
+    gap: rem(16px);
+}
+.contact__social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(45px);
+    height: rem(45px);
+    background-color: $gray-600;
+    transition: background-color 0.3s ease;
+
+    @include fs18();
+    @include hover() {
+        background-color: $golden-200;
+    }
+
+    &:active {
+        background-color: $gray-200;
+    }
+}
