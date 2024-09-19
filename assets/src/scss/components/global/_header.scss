@@ -15,8 +15,9 @@
     top: 0;
     bottom: 0;
     position: absolute;
-    width: calc(100% + rem(10px) * 2);
-    left: calc(rem(10px) * -1);
+    min-width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: -1;
 
 }

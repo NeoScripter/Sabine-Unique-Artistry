@@ -17,7 +17,7 @@
         <p class="footer__copyright">©2024 Sabine's Unique Artistry</p>
         <a href="<?php echo get_permalink_by_slug('privacy-policy') ;?>" target="_blank" class="footer__privacy-link">Privacy Policy</a>
     </div>
-    <a href="" class="footer__scroll-link">
+    <a href="#page_top" class="footer__scroll-link">
         Scroll to top
         <?php include get_template_directory() . '/assets/svgs/arrow-top.svg'; ?>
     </a>

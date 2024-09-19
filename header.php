@@ -9,7 +9,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <div class="wrapper">
+    <div class="wrapper" id="page_top">
         <header class="header">
             <div class="header__logo">Sabine's Unique Artistry</div>
             <div class="header__popup header__popup--hidden">

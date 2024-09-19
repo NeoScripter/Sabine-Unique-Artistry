@@ -25,6 +25,15 @@ function load_js() {
 }
 add_action('wp_enqueue_scripts', 'load_js');
 
+
+function enqueue_portfolio_search_scripts() {
+    wp_enqueue_script('portfolio-search', get_template_directory_uri() . '/assets/dist/js/catalog.js', [], null, true);
+    wp_localize_script('portfolio-search', 'portfolioSearch', array(
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_portfolio_search_scripts');
+
 // Theme Options
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
@@ -91,3 +100,81 @@ function custom_excerpt_length($length)
     return 30;
 }
 add_filter('excerpt_length', 'custom_excerpt_length');
+
+
+
+
+
+function ajax_portfolio_search() {
+    $search_query = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
+    $paged = (isset($_POST['paged']) && $_POST['paged'] > 0) ? intval($_POST['paged']) : 1;
+
+    $args = array(
+        'post_type' => 'item',
+        'posts_per_page' => 10, 
+        'paged' => $paged,
+        'tag' => $search_query, 
+        'orderby' => 'date',
+        'order' => 'DESC',
+    );
+
+    $project_query = new WP_Query($args);
+
+    ob_start(); 
+
+    if ($project_query->have_posts()) :
+        while ($project_query->have_posts()) : $project_query->the_post(); ?>
+            <div class="catalog__item">
+                <div class="catalog__img-wrapper image-loading" style="background-image: url(<?php the_post_thumbnail_url('tiny'); ?>)">
+                    <!-- Display the Featured Image -->
+                    <?php if (has_post_thumbnail()) : 
+                    // Get the post thumbnail ID
+                    $thumbnail_id = get_post_thumbnail_id();
+                    
+                    // Retrieve the alt text
+                    $alt_text = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                    
+                    // Fallback to post title if no alt text is provided
+                    if (empty($alt_text)) {
+                        $alt_text = get_the_title();
+                    }
+                ?>
+                    <img src="<?php the_post_thumbnail_url('tablet'); ?>" alt="<?php echo esc_attr($alt_text); ?>" class="catalog__image" loading="lazy">
+                <?php endif; ?>
+                </div>
+                <div class="catalog__description">
+                    <div class="catalog__item-name"><?php echo esc_html(get_the_title()); ?></div>
+                    <a href="<?php the_permalink(); ?>" class="catalog__item-link">More details</a>
+                </div>
+            </div>
+        <?php endwhile; else :
+        echo '<p>No items found.</p>';
+    endif;
+
+    $grid_content = ob_get_clean(); 
+
+    ob_start(); 
+
+    // Pagination
+    echo paginate_links(array(
+        'total' => $project_query->max_num_pages,
+        'current' => $paged,
+        'format' => '?paged=%#%', 
+        'prev_text' => __('« Prev'),
+        'next_text' => __('Next »'),
+    ));
+
+    $pagination_content = ob_get_clean(); 
+
+    wp_reset_postdata();
+
+    wp_send_json_success(array(
+        'grid' => $grid_content,
+        'pagination' => $pagination_content
+    ));
+
+    die();
+}
+
+add_action('wp_ajax_portfolio_search', 'ajax_portfolio_search');
+add_action('wp_ajax_nopriv_portfolio_search', 'ajax_portfolio_search');
