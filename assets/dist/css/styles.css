@@ -2085,3 +2085,263 @@ input[type=checkbox].header__theme-toggle:checked + label::after {
 .contact__social-icon:active {
   background-color: #CBCBCB;
 }
+
+.webform {
+  position: relative;
+  padding: 1.5rem 0.63rem;
+  color: #212125;
+}
+@media screen and (min-width: 75rem) {
+  .webform {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-block: 3rem;
+  }
+}
+@media screen and (min-width: 90rem) {
+  .webform {
+    gap: 2.63rem;
+  }
+}
+
+.webform::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  min-width: 100vw;
+  transform: translateX(-50%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.webform__title {
+  text-transform: uppercase;
+  color: #837D6F;
+  margin-bottom: 1rem;
+}
+.webform__title {
+  font-family: "Bold";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.05rem;
+}
+@media screen and (min-width: 48rem) {
+  .webform__title {
+    font-size: 2.5rem;
+    letter-spacing: 0.08rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .webform__title {
+    font-size: 3rem;
+  }
+}
+
+.webform__subtitle {
+  margin-bottom: 1rem;
+}
+.webform__subtitle {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+.webform__subtitle {
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .webform__subtitle {
+    font-size: 1.13rem;
+  }
+}
+
+.webform__form {
+  flex-shrink: 0;
+}
+@media screen and (min-width: 75rem) {
+  .webform__form {
+    flex-basis: 60%;
+  }
+}
+.webform__form form {
+  display: grid;
+  gap: 1rem;
+}
+.webform__form form p {
+  max-width: 100%;
+}
+.webform__form .wpcf7-form-control-wrap {
+  background-color: transparent;
+}
+.webform__form input.wpcf7-form-control {
+  border: 0.07rem solid #837D6F;
+  color: #837D6F;
+  background-color: transparent;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+}
+.webform__form input.wpcf7-form-control {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 1.13rem;
+  letter-spacing: 0.03rem;
+}
+.webform__form input.wpcf7-form-control:focus-visible {
+  outline: 0.13rem solid #837D6F;
+}
+.webform__form input.wpcf7-form-control.wpcf7-not-valid {
+  border-color: #AD0808;
+}
+.webform__form input.wpcf7-form-control.wpcf7-not-valid:focus-visible {
+  outline: 0.13rem solid #AD0808;
+}
+.webform__form textarea.wpcf7-textarea {
+  border: 0.07rem solid #837D6F;
+  color: #837D6F;
+  background-color: transparent;
+  padding: 0.88rem 1.5rem;
+  width: 100%;
+}
+.webform__form textarea.wpcf7-textarea {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 1.13rem;
+  letter-spacing: 0.03rem;
+}
+.webform__form textarea.wpcf7-textarea:focus-visible {
+  outline: 0.13rem solid #837D6F;
+}
+.webform__form textarea.wpcf7-textarea.wpcf7-not-valid {
+  border-color: #AD0808;
+}
+.webform__form textarea.wpcf7-textarea.wpcf7-not-valid:focus-visible {
+  outline: 0.13rem solid #AD0808;
+}
+.webform__form .wpcf7-not-valid input[type=checkbox] {
+  border: 0.13rem solid #AD0808;
+}
+.webform__form input[type=checkbox] {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 0.07rem solid #837D6F;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  display: grid;
+  place-content: center;
+}
+.webform__form input[type=checkbox]:is(:hover, :focus-visible) {
+  background-color: #837D6F;
+}
+.webform__form input[type=checkbox]:checked {
+  background-color: #837D6F;
+}
+.webform__form input[type=checkbox]::before {
+  position: absolute;
+  content: "";
+  inset: 0.3rem;
+  z-index: 20;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1.5rem 1.5rem #F8F8F8;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.webform__form input[type=checkbox]:checked::before {
+  transform: scale(1);
+}
+.webform__form label:has(input[type=checkbox]) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.webform__form label:has(input[type=checkbox]) > a {
+  flex-shrink: 0;
+}
+.webform__form .wpcf7-list-item:has(input[type=checkbox]) {
+  margin: 0;
+}
+.webform__form input[type=submit] {
+  cursor: pointer;
+  border: none;
+  font-family: "Roboto";
+  width: 100%;
+  padding: 0.94rem 1.13rem;
+  color: #F8F8F8;
+  text-transform: uppercase;
+  font-size: 1.13rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #837D6F;
+  transition: background-color 0.3s ease;
+}
+.webform__form input[type=submit]:is(:hover, :focus-visible) {
+  background-color: #C0B69B;
+}
+.webform__form input[type=submit]:active {
+  background-color: #CBCBCB;
+}
+.webform__form input[type=submit] img {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+.webform__form p:has(input[type=submit]) {
+  position: relative;
+}
+.webform__form p:has(.webform__privacy-link) {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+.webform__form p:has(.webform__privacy-link) {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+.webform__form p:has(.webform__privacy-link) {
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .webform__form p:has(.webform__privacy-link) {
+    font-size: 1.13rem;
+  }
+}
+
+.webform__privacy-link {
+  color: #837D6F;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  padding-top: 0.3rem;
+}
+.webform__privacy-link {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  font-size: 1.13rem;
+  letter-spacing: 0.03rem;
+}
+.webform__privacy-link:is(:hover, :focus-visible) {
+  opacity: 0.8;
+}

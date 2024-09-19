@@ -1,0 +1,192 @@
+.webform {
+    position: relative;
+    padding: rem(24px) rem(10px);
+    color: $black-300;
+
+    @include m2() {
+        display: flex;
+        gap: rem(20px);
+        align-items: flex-start;
+        padding-block: rem(48px);
+    }
+
+    @include m3() {
+        gap: rem(42px);
+    }
+}
+
+.webform::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: -1;
+    min-width: 100vw;
+    transform: translateX(-50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.webform__title {
+    text-transform: uppercase;
+    color: $golden;
+    margin-bottom: rem(16px);
+    @include fs32();
+}
+
+.webform__subtitle {
+    margin-bottom: rem(16px);
+    @include fs16();
+}
+
+.webform__form {
+    flex-shrink: 0;
+
+    @include m2 {
+        flex-basis: 60%;
+    }
+    form {
+        display: grid;
+        gap: 1rem;
+
+        p {
+            max-width: 100%;
+        }
+    }
+
+    .wpcf7-form-control-wrap {
+        background-color: transparent;
+
+    }
+
+    input.wpcf7-form-control {
+        border: rem(1px) solid $golden;
+        color: $golden;
+        background-color: transparent;
+        padding: rem(20px) 1.5rem;
+        width: 100%;
+        @include fs18();
+
+        &:focus-visible {
+            outline: rem(2px) solid $golden;
+        }
+
+        &.wpcf7-not-valid {
+            border-color: $error;
+
+            &:focus-visible {
+                outline: rem(2px) solid $error;
+            }
+        }
+    }
+    
+    textarea.wpcf7-textarea {
+        border: rem(1px) solid $golden;
+        color: $golden;
+        background-color: transparent;
+        padding: rem(14px) 1.5rem;
+        width: 100%;
+        @include fs18();
+
+        &:focus-visible {
+            outline: rem(2px) solid $golden;
+        }
+
+        &.wpcf7-not-valid {
+            border-color: $error;
+
+            &:focus-visible {
+                outline: rem(2px) solid $error;
+            }
+        }
+    }
+
+    .wpcf7-not-valid input[type="checkbox"] {
+        border: rem(2px) solid $error;
+    }
+
+    input[type="checkbox"] {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+        border: rem(1px) solid $golden;
+        -webkit-appearance: none;
+        appearance: none;
+        display: grid;
+        place-content: center;
+
+        @include hover() {
+            background-color: $golden;
+        }
+    }
+    input[type="checkbox"]:checked {
+        background-color: $golden;
+    }
+
+    input[type="checkbox"]::before {
+        position: absolute;
+        content: "";
+        inset: 0.3rem;
+        z-index: 20;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1.5rem 1.5rem $white-300;
+        transform-origin: bottom left;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+       
+      }
+      
+      input[type="checkbox"]:checked::before {
+        transform: scale(1);
+      }
+
+    label:has(input[type="checkbox"]) {
+
+    }
+
+    label:has(input[type="checkbox"]) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        & > a {
+            flex-shrink: 0;
+        }
+    }
+
+    .wpcf7-list-item:has(input[type="checkbox"]) {
+        margin: 0;
+    }
+
+    input[type="submit"] {
+        @include button(100%);
+    }
+
+    p:has(input[type="submit"]) {
+        position: relative;
+    }
+
+    p:has(.webform__privacy-link) {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 0.2rem;
+        @include fs16();
+    }
+}
+
+.webform__privacy-link {
+    color: $golden;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    padding-top: 0.3rem;
+    @include fs18();
+
+    @include hover() {
+        opacity: 0.8;
+    }
+}
