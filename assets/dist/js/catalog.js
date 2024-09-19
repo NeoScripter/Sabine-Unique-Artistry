@@ -1,25 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadProjects();
+    let currentFilter = 'all';
+    let itemsPerPage = getItemsPerPage(); 
 
-    // Event listener for search input
-    document.getElementById('portfolioSearch').addEventListener('keyup', function() {
-        loadProjects(this.value);
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlFilter = urlParams.get('filter');
+    
+    if (urlFilter) {
+        currentFilter = urlFilter; 
+    }
+
+    loadProjects(currentFilter, 1, itemsPerPage); 
+    updateActiveBtns();
+
+    document.querySelectorAll('.catalog__filter-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+            currentFilter = this.getAttribute('data-filter'); 
+            loadProjects(currentFilter, 1, itemsPerPage); 
+            updateActiveBtns();
+        });
     });
 
-    // Event delegation for pagination links
     document.addEventListener('click', function(e) {
         if (e.target.closest('.catalog__pagination a')) {
             e.preventDefault();
-            
-            const paged = e.target.getAttribute('href').split('paged=')[1];  
-            const search = document.getElementById('portfolioSearch').value;
-
-            loadProjects(search, paged);
+            const paged = e.target.getAttribute('href').split('paged=')[1];
+            loadProjects(currentFilter, paged, itemsPerPage);
         }
     });
 
-    // Function to load projects
-    function loadProjects(search = '', paged = 1) {
+    function loadProjects(filter = 'all', paged = 1, itemsPerPage = 15) {
         fetch(portfolioSearch.ajaxurl, {
             method: 'POST',
             headers: {
@@ -27,40 +36,61 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: new URLSearchParams({
                 action: 'portfolio_search',
-                search: search,
-                paged: paged,
+                filter: filter, 
+                paged: paged, 
+                items_per_page: itemsPerPage, 
             })
         })
         .then(response => response.json())
         .then(response => {
             if (response.success) {
-                document.getElementById('portfolioGrid').innerHTML = response.data.grid;  
-                document.getElementById('portfolioPagination').innerHTML = response.data.pagination;
-                imageLoading();
+                document.getElementById('catalog__display').innerHTML = response.data.grid;
+                document.getElementById('catalog__pagination').innerHTML = response.data.pagination;
+                imageLoading(); // Re-trigger image loading effects
             } else {
-                document.getElementById('portfolioGrid').innerHTML = '<p>Произошла ошибка при загрузке проектов.</p>';
-                document.getElementById('portfolioPagination').innerHTML = '';  
+                document.getElementById('catalog__display').innerHTML = '<p>No items found.</p>';
+                document.getElementById('catalog__pagination').innerHTML = '';
             }
         })
         .catch(() => {
-            document.getElementById('portfolioGrid').innerHTML = '<p>Произошла ошибка при загрузке проектов.</p>';
+            document.getElementById('catalog__display').innerHTML = '<p>Error loading projects.</p>';
+        });
+    }
+
+    function getItemsPerPage() {
+        return window.innerWidth > 768 ? 30 : 15; 
+    }
+
+    function removeActiveClasses(currentBtn) {
+        document.querySelectorAll('.catalog__filter-btn').forEach(function(button) {
+            if (button !== currentBtn) {
+                button.classList.remove('catalog__filter-btn--active');
+            }
+        });
+    }
+
+    function updateActiveBtns() {
+        const selectedFilter = document.querySelector(`.catalog__filter-btn[data-filter="${currentFilter}"]`);
+        removeActiveClasses(selectedFilter);
+        selectedFilter.classList.add('catalog__filter-btn--active');
+    }
+
+    window.addEventListener('resize', function() {
+        itemsPerPage = getItemsPerPage(); 
+        loadProjects(currentFilter, 1, itemsPerPage); 
+    });
+
+    function imageLoading() {
+        document.querySelectorAll('.image-loading').forEach(function(imageWrapper) {
+            const image = imageWrapper.querySelector('img');
+            function loaded() {
+                imageWrapper.classList.add('image-loaded');
+            }
+            if (image.complete) {
+                loaded();
+            } else {
+                image.addEventListener('load', loaded);
+            }
         });
     }
 });
-
-// Image loading function
-function imageLoading() {
-    document.querySelectorAll('.image-loading').forEach(function(imageWrapper) {
-        const image = imageWrapper.querySelector('img');
-
-        function loaded() {
-            imageWrapper.classList.add('image-loaded');
-        }
-
-        if (image.complete) {
-            loaded();
-        } else {
-            image.addEventListener('load', loaded);
-        }
-    });
-}

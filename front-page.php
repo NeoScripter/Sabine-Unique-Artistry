@@ -33,15 +33,15 @@
 <section class="categories">
     <h2 class="categories__title">Catalog</h2>
     <div class="categories__list">
-        <a href="" class="categories__item" data-tags="figurines">
+        <a href="<?php echo get_home_url() . '/catalog?filter=figurines' ;?>" class="categories__item">
             <?php include get_template_directory() . '/assets/svgs/gallery-1.svg'; ?>
             <p class="categories__item-text">Figurines & Characters</p>
         </a>
-        <a href="" class="categories__item" data-tags="planters">
+        <a href="<?php echo get_home_url() . '/catalog?filter=planters' ;?>" class="categories__item">
             <?php include get_template_directory() . '/assets/svgs/gallery-2.svg'; ?>
             <p class="categories__item-text">Planters</p>
         </a>
-        <a href="" class="categories__item" data-tags="installations">
+        <a href="<?php echo get_home_url() . '/catalog?filter=installations' ;?>" class="categories__item">
             <?php include get_template_directory() . '/assets/svgs/gallery-3.svg'; ?>
             <p class="categories__item-text">Architectural Installations</p>
         </a>
@@ -127,7 +127,7 @@
             endif;
         endforeach;
     endif; ?>
-    <a href="" class="gallery__link">
+    <a href="<?php echo get_home_url() . '/catalog' ;?>" class="gallery__link">
         see the catalog
         <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg'; ?>" alt="arrow pointing to the top right">
     </a>

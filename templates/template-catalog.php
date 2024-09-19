@@ -15,16 +15,19 @@
 </nav>
 
 <section class="catalog">
-    <div class="catalog__search-wrapper">
-        <input type="text" id="portfolioSearch" placeholder="Поиск по проектам..." class="portfolio__search">
+    <div class="catalog__filter-wrapper">
+        <button class="catalog__filter-btn" data-filter="all">Show All</button>
+        <button class="catalog__filter-btn" data-filter="installations">Installations</button>
+        <button class="catalog__filter-btn" data-filter="figurines">Figurines</button>
+        <button class="catalog__filter-btn" data-filter="planters">Planters</button>
     </div>
 
-    <div class="catalog__grid" id="portfolioGrid">
+    <div class="catalog__grid" id="catalog__display">
         <!-- Portfolio items will be dynamically loaded here via AJAX -->
     </div>
 
     <!-- Pagination -->
-    <div class="catalog__pagination" id="portfolioPagination">
+    <div class="catalog__pagination" id="catalog__pagination">
         <!-- Pagination links will be dynamically loaded here via AJAX -->
     </div>
 </section>

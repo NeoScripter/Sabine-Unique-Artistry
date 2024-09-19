@@ -1,5 +1,12 @@
 .breadcrumbs {
     margin-block: 2rem;
+
+    @include m1() {
+        margin-block: 1.5rem;
+    }
+    @include m2() {
+        margin-block: rem(40px);
+    }
 }
 
 .breadcrumbs__ul {
@@ -9,8 +16,99 @@
     @include fs18();
 }
 
-.breadcrumbs__link {    
+.catalog__filter-wrapper {
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 0.5rem;
 
+    @include m1() {
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include m2() {
+        margin-bottom: rem(40px);
+        gap: 1.25rem;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.catalog__filter-btn {
+    text-transform: uppercase;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: rem(1px) solid currentColor;
+    padding: 1rem;
+    color: inherit;
+    transition: background-color 0.3s ease,
+    color 0.3s ease;
+    @include fs16();
+
+    @include hover() {
+        background-color: $golden-200;
+        border-color: $golden-200;
+        color: $white-300;
+    }
+
+    &:active {
+        background-color: $golden;
+        border-color: $golden;
+        color: $white-300;
+    }
+}
+
+.catalog__filter-btn--active {
+    background-color: $golden-200;
+    border-color: $golden-200;
+    color: $white-300;
+}
+
+.catalog__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: rem(1px) solid $golden;
+    color: $golden;
+    width: rem(56px);
+    height: rem(56px);
+    transition: background-color 0.3s ease,
+    color 0.3s ease;
+
+    @include fs18();
+
+    @include hover() {
+        background-color: $golden-200;
+        border-color: $golden-200;
+        color: $white-300;
+    }
+
+    &:active {
+        background-color: $golden;
+        border-color: $golden;
+        color: $white-300;
+    }
+    
+    &.current {
+        color: $white-300;
+        background-color: $golden;
+    }
+}
+
+.next.page-numbers,
+.prev.page-numbers {
+    display: none;
 }
 
 .catalog__grid {
@@ -39,7 +137,6 @@
 }
 
 .catalog__item {
-    padding-inline: rem(25px);
     user-select: none;
 }
 
@@ -55,10 +152,6 @@
         object-fit: cover;
         object-position: center;
     }
-}
-
-.catalog__image {
-
 }
 
 .catalog__description{
