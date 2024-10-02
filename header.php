@@ -47,10 +47,10 @@
                 </div>
                 
 
-                <button class="header__call-btn">
+                <a href="#webform" class="header__call-btn">
                     Contact us
                     <img src="<?php echo get_template_directory_uri() . '/assets/svgs/arrow-top.svg' ;?>" alt="arrow pointing to the top right">
-                </button>
+                </a>
 
                 <div class="header__theme-group">
                     <div class="header__theme-toggle">

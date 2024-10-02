@@ -72,3 +72,21 @@ section {
         margin-bottom: rem(48px);
     }
 }
+
+.single-page {
+    margin-inline: auto;
+    max-width: max-content;
+
+    h1 {
+        margin-top: 2rem;
+    }
+
+    h2 {
+        margin-top: 0.75rem;
+    }
+
+    p {
+        max-width: 85ch;
+        margin-top: 0.3rem;
+    }
+}

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.success) {
                 document.getElementById('catalog__display').innerHTML = response.data.grid;
                 document.getElementById('catalog__pagination').innerHTML = response.data.pagination;
-                imageLoading(); // Re-trigger image loading effects
+                imageLoading(); 
             } else {
                 document.getElementById('catalog__display').innerHTML = '<p>No items found.</p>';
                 document.getElementById('catalog__pagination').innerHTML = '';

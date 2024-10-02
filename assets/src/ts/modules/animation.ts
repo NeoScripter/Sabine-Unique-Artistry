@@ -13,6 +13,14 @@ export default class AnimationHandler {
     faqItem: NodeListOf<HTMLElement>;
     faqItemOpenClass: string;
 
+    itemHeroImage: HTMLImageElement | null;
+    itemImage: NodeListOf<HTMLElement> | null;
+
+    orderFormOverlay: HTMLElement | null;
+    orderFormVisibleClass: string;
+    orderFormCloseBtn: HTMLElement | null;
+    orderFormOpenBtn: HTMLElement | null;
+
     constructor() {
         // Header popup
         this.headerPopup = document.querySelector(".header__popup") as HTMLElement;
@@ -31,6 +39,16 @@ export default class AnimationHandler {
         // FAQ accordion
         this.faqItem = document.querySelectorAll(".faq__item");
         this.faqItemOpenClass = "faq__item--open";
+
+        // Item Image Selection
+        this.itemHeroImage = document.querySelector('#item-hero');
+        this.itemImage = document.querySelectorAll('.item__image');
+
+        // Order Form Popup
+        this.orderFormVisibleClass = 'item__popup-overlay--visible';
+        this.orderFormOverlay = document.querySelector('.item__popup-overlay');
+        this.orderFormCloseBtn = document.querySelector('.webform__close-popup');
+        this.orderFormOpenBtn = document.querySelector('.item__btn');
     }
 
     init() {
@@ -38,6 +56,46 @@ export default class AnimationHandler {
         this.setupTheme();
         this.imageLoading();
         this.setupFAQ();
+        this.displaySelectedItemImage();
+        this.showAndHideFormPopup();
+    }
+
+    // Order Form Popup
+    showAndHideFormPopup() {
+        if (!this.orderFormVisibleClass || !this.orderFormOverlay || !this.orderFormCloseBtn || !this.orderFormOpenBtn) return
+
+        this.orderFormOpenBtn.addEventListener('click', () => {
+            if (!this.orderFormOverlay) return
+
+            this.orderFormOverlay.style.display = 'block';
+            setTimeout(() => {
+                this.orderFormOverlay?.classList.add(this.orderFormVisibleClass);
+            }, 100);
+        })
+
+        this.orderFormCloseBtn.addEventListener('click', () => {
+            if (!this.orderFormOverlay) return
+
+            this.orderFormOverlay.classList.remove(this.orderFormVisibleClass);
+            setTimeout(() => {
+                if (!this.orderFormOverlay) return
+                this.orderFormOverlay.style.display = 'none';
+            }, 500);
+        })
+    }
+
+    // Item Image Selection
+    displaySelectedItemImage() {
+        if (!this.itemHeroImage || !this.itemImage) return
+
+        this.itemImage.forEach(image => {
+            image.addEventListener('click', () => {
+                const imageInside = image.querySelector('img');
+                if (imageInside) {
+                    this.itemHeroImage!.src = imageInside.src;
+                }
+            })
+        })
     }
 
     // Header popup main function

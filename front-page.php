@@ -133,7 +133,7 @@
     </a>
 </section>
 
-<section class="about">
+<section class="about" id="about-us-section">
     <div class="about__content">
         <h2 class="about__title">About us</h2>
         <p class="about__description"><?php echo get_field('about_us_intro'); ?></p>

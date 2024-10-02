@@ -14,9 +14,9 @@
     background-color: var(--footer-bg);
     border-top: rem(1px) solid $gray-200;
     position: absolute;
-    width: calc(100% + rem(10px) * 2);
+    width: 100%;
     top: 0;
-    left: calc(rem(10px) * -1);
+    left: 0;
     z-index: -1;
     bottom: 0;
 }

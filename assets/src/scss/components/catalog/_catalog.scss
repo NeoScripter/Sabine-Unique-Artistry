@@ -16,6 +16,10 @@
     @include fs18();
 }
 
+.breadcrumbs__link {
+    user-select: none;
+}
+
 .catalog__filter-wrapper {
     margin-bottom: 2rem;
     display: grid;
