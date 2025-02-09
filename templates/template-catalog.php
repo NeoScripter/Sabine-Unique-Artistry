@@ -15,11 +15,27 @@
 </nav>
 
 <section class="catalog">
-    <div class="catalog__filter-wrapper">
+<!--     <div class="catalog__filter-wrapper">
         <button class="catalog__filter-btn" data-filter="all">Show All</button>
         <button class="catalog__filter-btn" data-filter="installations">Installations</button>
         <button class="catalog__filter-btn" data-filter="figurines">Figurines</button>
         <button class="catalog__filter-btn" data-filter="planters">Planters</button>
+    </div> -->
+
+    <div class="catalog__filter-wrapper">
+        <button style="display:none;" class="catalog__filter-btn" data-filter="all">Show All</button>
+        <button data-filter="figurines" class="catalog__filter-btn categories__item">
+            <?php include get_template_directory() . '/assets/svgs/gallery-1.svg'; ?>
+            <p class="categories__item-text">Figurines & Characters</p>
+        </button>
+        <button data-filter="planters" class="catalog__filter-btn categories__item">
+            <?php include get_template_directory() . '/assets/svgs/gallery-2.svg'; ?>
+            <p class="categories__item-text">Planters</p>
+        </button>
+        <button data-filter="installations" class="catalog__filter-btn categories__item">
+            <?php include get_template_directory() . '/assets/svgs/gallery-3.svg'; ?>
+            <p class="categories__item-text">Architectural Installations</p>
+        </button>
     </div>
 
     <div class="catalog__grid" id="catalog__display">

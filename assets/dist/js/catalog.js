@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedFilter.classList.add('catalog__filter-btn--active');
     }
 
-    window.addEventListener('resize', function() {
+    /* window.addEventListener('resize', function() {
         itemsPerPage = getItemsPerPage(); 
         loadProjects(currentFilter, 1, itemsPerPage); 
-    });
+    }); */
 
     function imageLoading() {
         document.querySelectorAll('.image-loading').forEach(function(imageWrapper) {

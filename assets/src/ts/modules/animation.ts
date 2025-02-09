@@ -157,7 +157,7 @@ export default class AnimationHandler {
 
     changeLabelContent(selectedTheme: string) {
         this.themeLabels.forEach((label) => {
-            label.textContent = selectedTheme === "dark" ? "Dark Mode" : "Light Mode";
+            label.textContent = selectedTheme === "dark" ? "Light Mode" : "Dark Mode";
         });
     }
 

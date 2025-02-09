@@ -21,30 +21,30 @@ $error: #AD0808;
 
 
 :root {
-    --body-bg: #F8F8F8;
-    --text-400: #212125;
-    --svg-link: #837D6F;
-    --theme-bg: #CBCBCB;
-    --theme-toggle: #837D6F;
-    --theme-offset: 0.65rem;
-    --footer-bg: #CBCBCB;
-    --category-bg: #F1F1F1;
-    --category-svg: #837D6F;
-}
-
-:root:has(#dark-mode:checked) {
     --body-bg: #141414;
     --text-400: #F8F8F8;
     --svg-link: #F1F1F1;
     --theme-bg: #837D6F ;
     --theme-toggle:#CBCBCB;
-    --theme-offset: 0.4rem;
+    --theme-offset: 0.65rem;
     --footer-bg: #212125;
     --category-bg: #1D1D1D;
     --category-svg: #F1F1F1;
 }
 
-@media (prefers-color-scheme: dark) {
+:root:has(#dark-mode:checked) {
+    --body-bg: #F8F8F8;
+    --text-400: #212125;
+    --svg-link: #837D6F;
+    --theme-bg: #CBCBCB;
+    --theme-toggle: #837D6F;
+    --theme-offset: 0.4rem;
+    --footer-bg: #CBCBCB;
+    --category-bg: #F1F1F1;
+    --category-svg: #837D6F;
+}
+
+/* @media (prefers-color-scheme: dark) {
     :root {
         --body-bg: #141414;
         --text-400: #F8F8F8;
@@ -56,9 +56,9 @@ $error: #AD0808;
         --category-bg: #1D1D1D;
         --category-svg: #F1F1F1;
     }
-}
+} */
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
     :root {
         --body-bg: #F8F8F8;
         --text-400: #212125;
@@ -70,4 +70,4 @@ $error: #AD0808;
         --category-bg: #F1F1F1;
         --category-svg: #837D6F;
     }
-}
+} */

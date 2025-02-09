@@ -5,11 +5,19 @@
 
         <nav class="breadcrumbs">
             <ul class="breadcrumbs__ul">
-                <li><a href="<?php echo get_home_url(); ?>" class="breadcrumbs__link">HOME</a></li>
-                <li>//</li>
-                <li><a href="<?php echo get_home_url() . '/catalog'; ?>" class="breadcrumbs__link">CATALOG</a></li>
-                <li>//</li>
-                <li class="breadcrumbs__link"><?php the_title(); ?></a></li>
+                <?php 
+                $terms = get_the_terms(get_the_ID(), 'item_type');
+                
+                if ($terms && !is_wp_error($terms)) :
+                    $first_term = $terms[0]; 
+                    $term_slug = $first_term->slug;
+                    $term_name = $first_term->name;
+                ?>
+                <li><a href="<?php echo get_home_url() . '/catalog?filter=' . esc_attr($term_slug); ?>" class="breadcrumbs__link">
+                    ← Back to <?php echo esc_html($term_name); ?>
+                    </a>
+                </li>
+                <?php endif; ?>
             </ul>
         </nav>
 

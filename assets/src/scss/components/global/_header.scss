@@ -104,7 +104,8 @@
         }
     }
 
-    li.current_page_item {
+    li:nth-of-type(1).current_page_item,
+    li:nth-of-type(2).current_page_item {
         color: $golden;
     }
 

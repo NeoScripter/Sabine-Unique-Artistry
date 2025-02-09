@@ -18,28 +18,37 @@
 
 .breadcrumbs__link {
     user-select: none;
+    text-transform: uppercase;
+
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+    }
 }
 
 .catalog__filter-wrapper {
     margin-bottom: 2rem;
     display: grid;
+    place-content: center;
     gap: 0.5rem;
 
     @include m1() {
         margin-bottom: 1.5rem;
         gap: 1rem;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     @include m2() {
         margin-bottom: rem(40px);
         gap: 1.25rem;
-        grid-template-columns: repeat(4, 1fr);
+        width: rem(1050px);
+        margin-inline: auto;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 .catalog__filter-btn {
-    text-transform: uppercase;
+/*     text-transform: uppercase;
     background-color: transparent;
     cursor: pointer;
     display: flex;
@@ -50,7 +59,10 @@
     color: inherit;
     transition: background-color 0.3s ease,
     color 0.3s ease;
-    @include fs16();
+    @include fs16(); */
+
+    border: none;
+    cursor: pointer;
 
     @include hover() {
         background-color: $golden-200;
